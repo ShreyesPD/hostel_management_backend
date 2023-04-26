@@ -1,19 +1,24 @@
 
-//Warden model
+//guardian model
 module.exports = (sequelize, DataTypes) => {
-    const warden = sequelize.define("warden", {
-        warden_id: {
+    const guardian = sequelize.define("guardian", {
+        stud_id: {
             allowNull: false,
             primaryKey: true,
             type: DataTypes.STRING,
         },
-        wName: {
+        gName: {
             allowNull: false,
             type: DataTypes.STRING,
         },
         sex: {
             type: DataTypes.ENUM,
             values: ['M','F','O'],
+            allowNull: false
+        },
+        relation: {
+            type: DataTypes.ENUM,
+            values: ['Mother','Father','Guardian'],
             allowNull: false
         },
         aadhar: {
@@ -39,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }, { timestamps: true },)
-    return warden
+    return guardian 
 }
 
 
