@@ -39,17 +39,3 @@ module.exports = (sequelize, DataTypes) => {
     }, { timestamps: true },)
     return hostel
 }
-
-// email: {
-//     type: DataTypes.STRING,
-//     unique: true,
-//     isEmail: true, //checks for email format
-//     allowNull: false
-// },
-// wardenId:{
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//     foreignKey: true,
-// },
-// unique: true,
-// autoIncrement: true,

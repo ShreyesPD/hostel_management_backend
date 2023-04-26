@@ -41,12 +41,3 @@ module.exports = (sequelize, DataTypes) => {
     }, { timestamps: true },)
     return warden
 }
-
-
-// wardenId:{
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//     foreignKey: true,
-// },
-// unique: true,
-// autoIncrement: true,

@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
         stud_id: {
             allowNull: false,
             primaryKey: true,
+            foreignKey: true,
             type: DataTypes.STRING,
         },
         gName: {
             allowNull: false,
+            primaryKey: true,
             type: DataTypes.STRING,
         },
         sex: {
@@ -46,12 +48,3 @@ module.exports = (sequelize, DataTypes) => {
     }, { timestamps: true },)
     return guardian 
 }
-
-
-// wardenId:{
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//     foreignKey: true,
-// },
-// unique: true,
-// autoIncrement: true,
