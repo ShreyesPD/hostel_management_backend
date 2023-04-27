@@ -7,7 +7,7 @@ const applicants = db.applicant;
 
 const createApplicant = async (req, res) => {
     try {
-        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , guardian_name , guardian_sex , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email } = req.body;
+        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email } = req.body;
         const data = {
             applicant_id , 
             applicant_Name ,
@@ -20,8 +20,11 @@ const createApplicant = async (req, res) => {
             distance ,
             photo ,
             email ,
+            medical_certificate,
+            bonified_certificate,
+            start_date,
+            end_date,
             guardian_name ,
-            guardian_sex , 
             relation , 
             guardian_aadhar , 
             guardian_address , 

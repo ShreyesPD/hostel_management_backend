@@ -60,6 +60,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BLOB('long'),
             allowNull: true,
         },
+        start_date: {
+            allowNull: false,
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+        end_date: {
+            allowNull: false,
+            type: DataTypes.DATE,
+        },
         guardian_name: {
             allowNull: false,
             primaryKey: true,
