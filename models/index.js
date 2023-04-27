@@ -21,8 +21,18 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+
 //connecting to model
 db.student = require('./studentModel')(sequelize, DataTypes)
+db.student = require('./wardenModel')(sequelize, DataTypes)
+db.student = require('./roomModel')(sequelize, DataTypes)
+db.student = require('./roomAllotmentModel')(sequelize, DataTypes)
+db.student = require('./paymentModel')(sequelize, DataTypes)
+db.student = require('./messModel')(sequelize, DataTypes)
+db.student = require('./hostelWardenModel')(sequelize, DataTypes)
+db.student = require('./hostelModel')(sequelize, DataTypes)
+db.student = require('./guardianModel')(sequelize, DataTypes)
+db.student = require('./availsModel')(sequelize, DataTypes)
 
 
 //exporting the module

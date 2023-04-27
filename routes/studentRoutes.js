@@ -1,7 +1,7 @@
 //importing modules
 const express = require('express')
 const studentController = require('../controllers/studentController')
-const { getStudent} = studentController
+const { getAllStudent , createStudent , findStudentByNameCourse} = studentController
 // const userAuth = require('../Middlewares/userAuth')
 
 const router = express.Router()
@@ -13,7 +13,10 @@ const router = express.Router()
 
 // router.post('/login', login)
 
-router.get('/getStudent', getStudent)
+router.get('/getAllStudent', getAllStudent)
+router.post('/createStudent/id/:stud_id/name/:sName/type/:stud_type/course/:stud_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/photo/:photo/email/:email', createStudent)
+router.get('/findStudentByNameCourse/:s_name:stud_course', findStudentByNameCourse)
+
 
 // router.get('/getUserbyId/:id', getUserbyId)
 

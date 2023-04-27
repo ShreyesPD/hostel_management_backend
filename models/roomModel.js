@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.INTEGER,
         },
+        no_of_tables: {
+            allowNull: false,
+            type: DataTypes.INTEGER,
+        },
         hostel_id: {
             allowNull: false,
             foreignKey: true,

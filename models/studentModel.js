@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         stud_id: {
             allowNull: false,
             primaryKey: true,
-            type: DataTypes.STRING,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
         },
         sName: {
             allowNull: false,
@@ -15,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM,
             values: ["UG","PG","PhD"],
             allowNull: false
+        },
+        address:{
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         sex: {
             type: DataTypes.ENUM,
