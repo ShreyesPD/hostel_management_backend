@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: mess,
+                model: 'messes',
                 key: 'package_id'
             },
             type: DataTypes.STRING,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: payment,
+                model: 'payments',
                 key: 'payment_id'
             },
             type: DataTypes.STRING,
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: hostel_resident,
+                model: 'hostel_residents',
                 key: 'hostel_resident_id'
             },
             type: DataTypes.INTEGER,

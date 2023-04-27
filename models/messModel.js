@@ -1,7 +1,7 @@
 
 //mess model
 module.exports = (sequelize, DataTypes) => {
-    const mess = sequelize.define("mess", {
+    const mess = sequelize.define("messes", {
         package_id: {
             allowNull: false,
             primaryKey: true,

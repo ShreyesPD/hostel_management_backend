@@ -1,7 +1,7 @@
 
 //payment model
 module.exports = (sequelize, DataTypes) => {
-    const payment = sequelize.define("payment", {
+    const payment = sequelize.define("payments", {
         payment_id: {
             allowNull: false,
             primaryKey: true,

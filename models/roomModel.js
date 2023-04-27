@@ -1,7 +1,7 @@
 
 //room model
 module.exports = (sequelize, DataTypes) => {
-    const room = sequelize.define("room", {
+    const room = sequelize.define("rooms", {
         room_no: {
             allowNull: false,
             primaryKey: true,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         hostel_id: {
             allowNull: false,
             references: {
-                model: hostel,
+                model: 'hostels',
                 key: 'hostel_id'
             },
             type: DataTypes.INTEGER,

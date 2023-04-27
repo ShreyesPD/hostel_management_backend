@@ -1,12 +1,12 @@
 
 //hostelWarden model
 module.exports = (sequelize, DataTypes) => {
-    const hostel_warden = sequelize.define("hostel_warden", {
+    const hostel_warden = sequelize.define("hostel_wardens", {
         hostel_id: {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: hostel,
+                model: 'hostels',
                 key: 'hostel_id'
             },
             type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: warden,
+                model: 'wardens',
                 key: 'warden_id'
             },
             type: DataTypes.INTEGER,

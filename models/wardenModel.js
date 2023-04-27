@@ -1,7 +1,7 @@
 
 //Warden model
 module.exports = (sequelize, DataTypes) => {
-    const warden = sequelize.define("warden", {
+    const warden = sequelize.define("wardens", {
         warden_id: {
             allowNull: false,
             primaryKey: true,

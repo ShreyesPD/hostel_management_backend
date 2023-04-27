@@ -1,6 +1,6 @@
 //applicant model
 module.exports = (sequelize, DataTypes) => {
-    const applicant = sequelize.define("applicant", {
+    const applicant = sequelize.define("applicants", {
         applicant_id: {
             allowNull: false,
             primaryKey: true,

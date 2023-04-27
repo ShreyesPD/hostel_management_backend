@@ -1,12 +1,12 @@
 
 //guardian model
 module.exports = (sequelize, DataTypes) => {
-    const guardian = sequelize.define("guardian", {
+    const guardian = sequelize.define("guardians", {
         hostel_resident_id: {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: hostel_resident,
+                model: 'hostel_residents',
                 key: 'hostel_resident_id'
             },
             type: DataTypes.INTEGER,

@@ -1,7 +1,7 @@
 
 //hostelResident model
 module.exports = (sequelize, DataTypes) => {
-    const hostel_resident = sequelize.define("hostel_resident", {
+    const hostel_resident = sequelize.define("hostel_residents", {
         hostel_resident_id: {
             allowNull: false,
             primaryKey: true,

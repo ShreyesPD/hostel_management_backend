@@ -1,12 +1,12 @@
 
 //roomAllot model
 module.exports = (sequelize, DataTypes) => {
-    const room_allot = sequelize.define("room_allot", {
+    const room_allot = sequelize.define("room_allots", {
         room_no: {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: room,
+                model: 'rooms',
                 key: 'room_no'
             },
             type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: payment,
+                model: 'payments',
                 key: 'payment_id'
             },
             type: DataTypes.STRING,
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: hostel_resident,
+                model: 'hostel_residents',
                 key: 'hostel_resident_id'
             },
             type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: warden,
+                model: 'wardens',
                 key: 'warden_id'
             },
             type: DataTypes.INTEGER,
