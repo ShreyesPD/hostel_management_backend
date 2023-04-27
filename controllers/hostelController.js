@@ -7,20 +7,20 @@ const hostels = db.hostel;
 
 const createHostel = async (req, res) => {
     try {
-        const { hostel_id , capacity , hostel_type , accommodation_fee , security_deposit , location , office_contact , hostel_descript } = req.body;
+        const { hostel_id , capacity , hostel_type , accommodation_fee_per_day , security_deposit , location , office_contact ,office_email, hostel_descript } = req.body;
         const data = {
             hostel_id , 
             capacity ,
             hostel_type ,
-            accommodation_fee ,
+            accommodation_fee_per_day ,
             security_deposit , 
             location , 
             office_contact , 
+            office_email ,
             hostel_descript
         };
 
         const hostel = await hostels.create(data)
-
 
         console.log("hostel record inserted", " " ,hostel )
     } catch (error) {

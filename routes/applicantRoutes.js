@@ -1,7 +1,7 @@
 //importing modules
 const express = require('express')
-const studentController = require('../controllers/applicantController')
-const { getAllApplicant , createApplicant , findApplicantByNameCourse} = studentController
+const applicantController = require('../controllers/applicantController')
+const { getAllApplicant , createApplicant , findApplicantByNameCourse} = applicantController
 // const userAuth = require('../Middlewares/userAuth')
 
 const router = express.Router()
@@ -13,9 +13,9 @@ const router = express.Router()
 
 // router.post('/login', login)
 
-router.get('/getAllStudent', getAllApplicant)
-router.post('/createApplicant/id/:applicant_id/name/:applicant_name/type/:course_type/course/:applicant_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/photo/:photo/email/:email', createApplicant)
-router.get('/findApplicantByNameCourse/:app_name:app_name', findApplicantByNameCourse)
+router.get('/getAllApplicant', getAllApplicant)
+router.post('/createApplicant/id/:applicant_id/name/:applicant_name/c_type/:course_type/course/:applicant_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/distance/:distance/photo/:photo/email/:email/g_name/:guardian_name/g_sex/:guardian_sex/relation/:relation/g_aadhar/:guardian_aadhar/g_address/:guardian_address/g_contact/:guardian_contact/g_email/:guardian_email', createApplicant)
+router.get('/findApplicantByNameCourse/:applicant_name/:applicant_course', findApplicantByNameCourse)
 
 
 // router.get('/getUserbyId/:id', getUserbyId)

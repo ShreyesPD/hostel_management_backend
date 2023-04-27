@@ -7,7 +7,7 @@ const applicants = db.applicant;
 
 const createApplicant = async (req, res) => {
     try {
-        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , photo , email} = req.body;
+        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , guardian_name , guardian_sex , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email } = req.body;
         const data = {
             applicant_id , 
             applicant_Name ,
@@ -17,8 +17,16 @@ const createApplicant = async (req, res) => {
             aadhar ,
             address ,
             contact ,
+            distance ,
             photo ,
-            email
+            email ,
+            guardian_name ,
+            guardian_sex , 
+            relation , 
+            guardian_aadhar , 
+            guardian_address , 
+            guardian_contact , 
+            guardian_email
         };
 
         const appl = await applicants.create(data)
@@ -47,11 +55,12 @@ const findApplicantByNameCourse = async(req,res) => {
     console.log('hello')
     try{
         const user = await applicants.findOne({
-        where: {
-            app_course : req.params['applicant_course'],
-            app_name : req.params['applicant_name']
-          } 
-          });
+            where: {
+                app_course : req.params['applicant_course'],
+                app_name : req.params['applicant_name']
+            } 
+        });
+        res.status(200).send(user);
     }catch (error){
         console.log(error);
     }

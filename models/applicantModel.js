@@ -1,10 +1,7 @@
-
-
 //applicant model
 module.exports = (sequelize, DataTypes) => {
     const applicant = sequelize.define("applicant", {
         applicant_id: {
-
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -22,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         applicant_course: {
             type: DataTypes.STRING,
             allowNull: false
-
         },
         sex: {
             type: DataTypes.ENUM,

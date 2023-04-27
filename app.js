@@ -1,12 +1,11 @@
-
 //importing modules
 const express = require('express')
 const sequelize = require('sequelize')
 //const dotenv = require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const db = require('./models')
-const studentRoutes = require ('./routes/applicantRoutes')
-//  const projectRoutes = require ('./Routes/projectRoutes')
+const applicantRoutes = require ('./routes/applicantRoutes')
+const hostelRoutes = require ('./routes/hostelRoutes')
 //  const worksOnRoutes = require ('./Routes/worksOnRoutes')
 //  const leaveRoutes = require ('./Routes/leaveRoutes')
 
@@ -28,8 +27,9 @@ db.sequelize.sync({ force: false }).then(() => {
 })
 
 //routes for the user API
-app.use('/api/getStudents', studentRoutes)
-// app.use('/api/project', projectRoutes)
+app.use('/api/applicant', applicantRoutes)
+app.use('/api/hostel', hostelRoutes)
+
 // app.use('/api/worksOn',worksOnRoutes)
 // app.use('/api/Leave',leaveRoutes)
 
