@@ -2,12 +2,12 @@
 //room model
 module.exports = (sequelize, DataTypes) => {
     const room = sequelize.define("room", {
-        roomNo: {
+        room_no: {
             allowNull: false,
             primaryKey: true,
             type: DataTypes.INTEGER,
         },
-        keyNo: {
+        key_no: {
             allowNull: false,
             type: DataTypes.INTEGER,
         },
@@ -21,9 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         hostel_id: {
             allowNull: false,
-            foreignKey: true,
+            references: {
+                model: hostel,
+                key: 'hostel_id'
+            },
             type: DataTypes.INTEGER,
         },
-    }, { timestamps: true },)
+    }, { timestamps: true }, {freezeTableName: true})
     return room 
 }
