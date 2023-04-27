@@ -8,8 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         package_description: {
-            allowNull: false,
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM,
+            values: ["5_day_veg","5_day_nonveg","7_day_veg","7_day_nonveg"],
+            defaultValue: "5_day_veg"
         },
         amt_per_day: {
             type: DataTypes.FLOAT,
