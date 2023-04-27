@@ -1,19 +1,24 @@
 
 //student model
 module.exports = (sequelize, DataTypes) => {
-    const student = sequelize.define("student", {
-        stud_id: {
+    const applicant = sequelize.define("applicant", {
+        applicant_id: {
             allowNull: false,
             primaryKey: true,
-            type: DataTypes.STRING,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
         },
         sName: {
             allowNull: false,
             type: DataTypes.STRING,
         },
-        stud_type: {
+        course_type: {
             type: DataTypes.ENUM,
             values: ["UG","PG","PhD"],
+            allowNull: false
+        },
+        applicant_course: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         sex: {
