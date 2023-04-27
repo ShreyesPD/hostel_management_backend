@@ -1,8 +1,10 @@
 
+
 //applicant model
 module.exports = (sequelize, DataTypes) => {
     const applicant = sequelize.define("applicant", {
         applicant_id: {
+
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -28,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         aadhar: {
+
             type: DataTypes.BIGINT(12),
             allowNull: false,
         },
@@ -87,5 +90,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }, { timestamps: true },  {freezeTableName: true})
-    return hostel_resident 
+    return applicant 
 }

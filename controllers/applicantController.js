@@ -3,16 +3,16 @@
 const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
-const students = db.student;
+const applicants = db.applicant;
 
-const createStudent = async (req, res) => {
+const createApplicant = async (req, res) => {
     try {
-        const { stud_id , sName , stud_type , stud_course , sex , aadhar , address , contact , photo , email} = req.body;
+        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , photo , email} = req.body;
         const data = {
-            stud_id , 
-            sName ,
-            stud_type ,
-            stud_course ,
+            applicant_id , 
+            applicant_Name ,
+            course_type ,
+            applicant_course ,
             sex ,
             aadhar ,
             address ,
@@ -21,18 +21,18 @@ const createStudent = async (req, res) => {
             email
         };
 
-        const allStu = await db.students.create(data)
+        const allApp = await db.applicants.create(data)
 
-        if (allStu) {
-            let token = jwt.sign({ id: allStu.id }, process.env.secretKey, {
+        if (allApp) {
+            let token = jwt.sign({ id: allApp.id }, process.env.secretKey, {
                 expiresIn: 1 * 24 * 60 * 60 * 1000,
             });
 
             res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-            console.log("project", JSON.stringify(project, null, 2));
+            console.log("applicants", JSON.stringify(project, null, 2));
             console.log(token);
         
-            return res.status(201).send("project added");
+            return res.status(201).send("application recieved");
         } else {
             return res.status(409).send("Details are not correct");
         }
@@ -42,24 +42,24 @@ const createStudent = async (req, res) => {
 }
 
 
-const getAllStudent = async(req,res) => {
+const getAllApplicant = async(req,res) => {
     console.log('hello')
     try{
-        const allStd = await students.findAll();
-        console.log({allStd});
-        res.status(200).send(allStd);
+        const allStd = await applicants.findAll();
+        console.log({allApp});
+        res.status(200).send(allApp);
     }catch (error){
         console.log(error);
     }
 };
 
-const findStudentByNameCourse = async(req,res) => {
+const findApplicantByNameCourse = async(req,res) => {
     console.log('hello')
     try{
-        const user = await students.findOne({
+        const user = await applicants.findOne({
         where: {
-            std_name : req.params['s_name'],
-            std_course : req.params['stud_course']
+            app_name : req.params['applicant_name'],
+            app_course : req.params['applicant_course']
           } 
           });
     }catch (error){
@@ -78,7 +78,7 @@ const findStudentByNameCourse = async(req,res) => {
 // }
 
 module.exports = {
-    getAllStudent,
-    createStudent,
-    findStudentByNameCourse
+    getAllApplicant,
+    createApplicant,
+    findApplicantByNameCourse
 };

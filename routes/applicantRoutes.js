@@ -1,6 +1,6 @@
 //importing modules
 const express = require('express')
-const studentController = require('../controllers/studentController')
+const studentController = require('../controllers/applicantController')
 const { getAllStudent , createStudent , findStudentByNameCourse} = studentController
 // const userAuth = require('../Middlewares/userAuth')
 

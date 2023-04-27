@@ -23,6 +23,7 @@ db.sequelize = sequelize
 
 
 //connecting to model
+
 db.student = require('./studentModel')(sequelize, DataTypes)
 db.warden = require('./wardenModel')(sequelize, DataTypes)
 db.room = require('./roomModel')(sequelize, DataTypes)
