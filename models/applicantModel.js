@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         application_status:{
             type: DataTypes.ENUM,
-            values: ["waiting","aproved","rejected"],
+            values: ["waiting","aproved","rejected","admitted"],
             defaultValue: "waiting"
         }
     }, { timestamps: true },  {freezeTableName: true})
