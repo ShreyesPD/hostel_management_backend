@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         capacity: {
             allowNull: false,
-            type: DataTypes.INTEGE
+            type: DataTypes.INTEGER
         },
         hostel_type: {
             type: DataTypes.ENUM,
