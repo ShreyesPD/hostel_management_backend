@@ -54,6 +54,14 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
+        medical_certificate:{
+            type: DataTypes.BLOB('long'),
+            allowNull: true,
+        },
+        bonified_certificate:{
+            type: DataTypes.BLOB('long'),
+            allowNull: true,
+        },
     }, { timestamps: true },  {freezeTableName: true})
     return hostel_resident 
 }

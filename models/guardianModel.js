@@ -16,11 +16,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.STRING,
         },
-        sex: {
-            type: DataTypes.ENUM,
-            values: ['M','F','O'],
-            allowNull: false
-        },
         relation: {
             type: DataTypes.ENUM,
             values: ['Mother','Father','Guardian'],
@@ -28,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         aadhar: {
             type: DataTypes.BIGINT(12),
-            allowNull: false,
+            allowNull: true,
         },
         address:{
             type: DataTypes.STRING,
@@ -40,9 +35,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         email: {
             type: DataTypes.STRING,
-            unique: true,
             isEmail: true, 
-            allowNull: false
+            allowNull: true
         },
     }, { timestamps: true }, {freezeTableName: true});
     return guardian 

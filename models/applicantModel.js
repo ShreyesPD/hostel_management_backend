@@ -56,15 +56,18 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
+        medical_certificate:{
+            type: DataTypes.BLOB('long'),
+            allowNull: true,
+        },
+        bonified_certificate:{
+            type: DataTypes.BLOB('long'),
+            allowNull: true,
+        },
         guardian_name: {
             allowNull: false,
             primaryKey: true,
             type: DataTypes.STRING,
-        },
-        guardian_sex: {
-            type: DataTypes.ENUM,
-            values: ['M','F','O'],
-            allowNull: false
         },
         relation: {
             type: DataTypes.ENUM,
@@ -89,6 +92,7 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
+        
     }, { timestamps: true },  {freezeTableName: true})
     return applicant 
 }
