@@ -5,19 +5,23 @@ module.exports = (sequelize, DataTypes) => {
         hostel_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
-            type: DataTypes.STRING,
+            references: 'hostel', 
+            referencesKey: 'hostel_id',
+            type: DataTypes.INTEGER,
         },
         warden_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
-            type: DataTypes.STRING,
+            references: 'warden', 
+            referencesKey: 'warden_id',
+            type: DataTypes.INTEGER,
         },
         joinDate: {
             allowNull: false,
             type: DataTypes.DATE,
         },
-    }, { timestamps: true },)
+    }, { timestamps: true },);
+    //warden.belongsToMany(hostel, { through: 'hostelWarden' });
+    //hostel.belongsToMany(warden, { through: 'hostelWarden' });
     return hostelWarden 
 }

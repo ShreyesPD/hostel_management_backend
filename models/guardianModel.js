@@ -2,12 +2,12 @@
 //guardian model
 module.exports = (sequelize, DataTypes) => {
     const guardian = sequelize.define("guardian", {
-        stud_id: {
+        applicant_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'student', 
-            referencesKey: 'stud_id',
-            type: DataTypes.STRING,
+            references: 'applicant', 
+            referencesKey: 'applicant_id',
+            type: DataTypes.INTEGER,
         },
         gName: {
             allowNull: false,
@@ -47,6 +47,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }, { timestamps: true },);
-    student.hasOne(guardian);
+  //  applicant.hasOne(guardian);
     return guardian 
 }

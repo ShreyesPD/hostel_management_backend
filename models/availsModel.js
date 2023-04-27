@@ -5,20 +5,23 @@ module.exports = (sequelize, DataTypes) => {
         package_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
+            references: 'mess', 
+            referencesKey: 'package_id',
             type: DataTypes.STRING,
         },
         payment_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
+            references: 'payment', 
+            referencesKey: 'payment_id',
             type: DataTypes.STRING,
         },
-        stud_id: {
+        applicant_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
-            type: DataTypes.STRING,
+            references: 'applicant', 
+            referencesKey: 'applicant_id',
+            type: DataTypes.INTEGER,
         },
         startDate: {
             allowNull: false,
@@ -28,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.DATE,
         },
-    }, { timestamps: true },)
+    }, { timestamps: true },);
+    
     return avails 
 }

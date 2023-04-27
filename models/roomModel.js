@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER,
         },
+        keyNo: {
+            allowNull: false,
+            type: DataTypes.INTEGER,
+        },
         no_of_beds: {
             allowNull: false,
             type: DataTypes.INTEGER,
@@ -18,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         hostel_id: {
             allowNull: false,
             foreignKey: true,
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
         },
     }, { timestamps: true },)
     return room 

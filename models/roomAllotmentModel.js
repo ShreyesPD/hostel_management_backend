@@ -5,26 +5,30 @@ module.exports = (sequelize, DataTypes) => {
         roomNo: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
+            references: 'room', 
+            referencesKey: 'roomNo',
             type: DataTypes.INTEGER,
         },
         payment_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
+            references: 'payment', 
+            referencesKey: 'payment_id',
             type: DataTypes.STRING,
         },
-        stud_id: {
+        applicant_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
-            type: DataTypes.STRING,
+            references: 'applicant', 
+            referencesKey: 'applicant_id',
+            type: DataTypes.INTEGER,
         },
         warden_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
-            type: DataTypes.STRING,
+            references: 'warden', 
+            referencesKey: 'payment_id',
+            type: DataTypes.INTEGER,
         },
         startDate: {
             allowNull: false,
