@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             type: DataTypes.INTEGER,
         },
-        sName: {
+        applicant_Name: {
             allowNull: false,
             type: DataTypes.STRING,
         },

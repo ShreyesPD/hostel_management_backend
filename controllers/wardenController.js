@@ -6,7 +6,7 @@ const db = require("../models");
 const wardens = db.warden;
 
 
-const getWarden = async(req,res) => {
+const getAllWarden = async(req,res) => {
     console.log('hello')
     try{
         const allWard = await wardens.findAll();
@@ -16,6 +16,10 @@ const getWarden = async(req,res) => {
         console.log(error);
     }
 };
+
+const getCurrentWarden = async(req,res) => {
+
+}
 
 
 // const getStudent = async(req,res) => {
@@ -29,5 +33,6 @@ const getWarden = async(req,res) => {
 // }
 
 module.exports = {
-    getWarden
+    getAllWarden ,
+    getCurrentWarden
 };
