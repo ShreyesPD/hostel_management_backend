@@ -5,8 +5,16 @@ const db = require("../models");
 
 const hostelResident = db.hostelResident;
 
-
-
+const getVacancy = async(req,res) => {
+    console.log('hello')
+    try{
+        const allApp = await applicants.findAll();
+        console.log({allApp});
+        res.status(200).send(allApp);
+    }catch (error){
+        console.log(error);
+    }
+};
 
 
 

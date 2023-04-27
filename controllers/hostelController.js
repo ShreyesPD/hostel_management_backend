@@ -4,6 +4,8 @@ const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
 const hostels = db.hostel;
+const hostelResidents = db.hostelResident
+
 
 const createHostel = async (req, res) => {
     try {
@@ -29,8 +31,34 @@ const createHostel = async (req, res) => {
     }
 }
 
+const getVacancy = async(req,res) => {
+    console.log('hello')
+    try{
+
+        const host_type = req.params['hostel_type']
+        const hostResd = await hostelResidents.count({
+            where : {
+                hostel_type : host_type
+            }
+        })
+        const capacity = await hostels.sum('capacity', 
+        {
+            where :{
+                hostel_type : host_type
+            }
+        })
+        const vacc = capacity - hostResd 
+
+        console.log({vacc});
+        res.status(200).send(vacc);
+    }catch (error){
+        console.log(error);
+    }
+};
+
 
 
 module.exports = {
-    createHostel
+    createHostel,
+    getVacancy
 };

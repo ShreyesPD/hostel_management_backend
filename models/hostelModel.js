@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             type: DataTypes.INTEGER,
         },
+        //in terms of head count 
         capacity: {
             allowNull: false,
             type: DataTypes.INTEGE
         },
         hostel_type: {
             type: DataTypes.ENUM,
-            values: ["Men_UG","Men_PG", "Men_PhD","Women_UG","Women_PG", "Women_PhD"],
+            values: ["Men_PG", "Men_PhD","Women_PG", "Women_PhD"],
             allowNull: false
         },
         accommodation_fee_per_day: {

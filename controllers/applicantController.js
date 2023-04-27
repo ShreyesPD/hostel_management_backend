@@ -54,6 +54,7 @@ const getAllApplicant = async(req,res) => {
     }
 };
 
+
 const findApplicantByNameCourse = async(req,res) => {
     console.log('hello')
     try{
@@ -69,6 +70,7 @@ const findApplicantByNameCourse = async(req,res) => {
     }
 };
 
+
 // const getStudent = async(req,res) => {
 //     console.log('hello')
 //     try{
@@ -78,6 +80,7 @@ const findApplicantByNameCourse = async(req,res) => {
 //         console.log(error);
 //     }
 // }
+
 
 module.exports = {
     getAllApplicant,

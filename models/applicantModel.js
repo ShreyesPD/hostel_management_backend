@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         aadhar: {
-
             type: DataTypes.BIGINT(12),
             allowNull: false,
         },
