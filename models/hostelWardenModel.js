@@ -1,27 +1,35 @@
 
 //hostelWarden model
 module.exports = (sequelize, DataTypes) => {
-    const hostelWarden = sequelize.define("hostelWarden", {
+    const hostel_warden = sequelize.define("hostel_warden", {
         hostel_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'hostel', 
-            referencesKey: 'hostel_id',
+            references: {
+                model: hostel,
+                key: 'hostel_id'
+            },
             type: DataTypes.INTEGER,
         },
         warden_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'warden', 
-            referencesKey: 'warden_id',
+            references: {
+                model: warden,
+                key: 'warden_id'
+            },
             type: DataTypes.INTEGER,
         },
-        joinDate: {
+        join_date: {
             allowNull: false,
             type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         },
-    }, { timestamps: true },);
-    //warden.belongsToMany(hostel, { through: 'hostelWarden' });
-    //hostel.belongsToMany(warden, { through: 'hostelWarden' });
-    return hostelWarden 
+        end_date: {
+            allowNull: true,
+            type: DataTypes.DATE,
+        },
+    }, { timestamps: true }, {freezeTableName: true});
+
+    return hostel_warden 
 }

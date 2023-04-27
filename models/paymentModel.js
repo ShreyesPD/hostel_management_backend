@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.STRING,
         },
-        paymentAmt: {
+        payment_amt: {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-    }, { timestamps: true },)
+    }, { timestamps: true }, {freezeTableName: true})
     return payment 
 }
