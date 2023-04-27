@@ -1,5 +1,5 @@
 
-//student model
+//applicant model
 module.exports = (sequelize, DataTypes) => {
     const applicant = sequelize.define("applicant", {
         applicant_id: {
