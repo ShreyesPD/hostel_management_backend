@@ -12,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.INTEGER,
         },
-        Hosteltype: {
+        hostel_type: {
             type: DataTypes.ENUM,
-            values: ["Men_PG", "Men_PhD", "Women_PG", "Women_PhD"],
+            values: ["Men_UG","Men_PG", "Men_PhD","Women_UG","Women_PG", "Women_PhD"],
             allowNull: false
         },
-        accommodationFee: {
+        accommodation_fee: {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        securityDeposit: {
+        security_deposit: {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        officeContact:{
+        office_contact:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        hostelDescpt:{
+        hostel_descript:{
             type: DataTypes.STRING,
             allowNull: false,
         },
