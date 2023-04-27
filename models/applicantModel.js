@@ -8,11 +8,8 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             type: DataTypes.INTEGER,
         },
-<<<<<<<< HEAD:models/applicantModel.js
-        applicant_Name: {
-========
+
         hostel_resident_name: {
->>>>>>>> d9d0fee5cf3fdb8e358f86db433e3d9d8942bedc:models/hostelResidentModel.js
             allowNull: false,
             type: DataTypes.STRING,
         },
@@ -58,5 +55,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }, { timestamps: true },)
-    return student 
+    return hostel_resident
 }

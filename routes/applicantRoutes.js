@@ -1,7 +1,7 @@
 //importing modules
 const express = require('express')
 const studentController = require('../controllers/applicantController')
-const { getAllStudent , createStudent , findStudentByNameCourse} = studentController
+const { getAllApplicant , createApplicant , findApplicantByNameCourse} = studentController
 // const userAuth = require('../Middlewares/userAuth')
 
 const router = express.Router()
@@ -13,9 +13,9 @@ const router = express.Router()
 
 // router.post('/login', login)
 
-router.get('/getAllStudent', getAllStudent)
-router.post('/createStudent/id/:stud_id/name/:sName/type/:stud_type/course/:stud_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/photo/:photo/email/:email', createStudent)
-router.get('/findStudentByNameCourse/:s_name:stud_course', findStudentByNameCourse)
+router.get('/getAllStudent', getAllApplicant)
+router.post('/createApplicant/id/:applicant_id/name/:applicant_name/type/:course_type/course/:applicant_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/photo/:photo/email/:email', createApplicant)
+router.get('/findApplicantByNameCourse/:app_name:app_name', findApplicantByNameCourse)
 
 
 // router.get('/getUserbyId/:id', getUserbyId)

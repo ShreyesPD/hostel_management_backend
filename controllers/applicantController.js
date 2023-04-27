@@ -21,22 +21,12 @@ const createApplicant = async (req, res) => {
             email
         };
 
-        const allApp = await db.applicants.create(data)
+        const appl = await applicants.create(data)
+    
+        console.log("applicant record inserted", " " ,appl )
 
-        if (allApp) {
-            let token = jwt.sign({ id: allApp.id }, process.env.secretKey, {
-                expiresIn: 1 * 24 * 60 * 60 * 1000,
-            });
-
-            res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-            console.log("applicants", JSON.stringify(project, null, 2));
-            console.log(token);
-        
-            return res.status(201).send("application recieved");
-        } else {
-            return res.status(409).send("Details are not correct");
-        }
     } catch (error) {
+        console.log("applicant record were not inserted")
         console.log(error);
     }
 }
@@ -45,7 +35,7 @@ const createApplicant = async (req, res) => {
 const getAllApplicant = async(req,res) => {
     console.log('hello')
     try{
-        const allStd = await applicants.findAll();
+        const allApp = await applicants.findAll();
         console.log({allApp});
         res.status(200).send(allApp);
     }catch (error){
@@ -58,8 +48,8 @@ const findApplicantByNameCourse = async(req,res) => {
     try{
         const user = await applicants.findOne({
         where: {
-            app_name : req.params['applicant_name'],
-            app_course : req.params['applicant_course']
+            app_course : req.params['applicant_course'],
+            app_name : req.params['applicant_name']
           } 
           });
     }catch (error){
