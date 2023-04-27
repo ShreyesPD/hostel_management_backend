@@ -97,7 +97,11 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
-        
+        application_status:{
+            type: DataTypes.ENUM,
+            values: ["waiting","aproved","rejected"],
+            defaultValue: "waiting"
+        }
     }, { timestamps: true },  {freezeTableName: true})
     return applicant 
 }
