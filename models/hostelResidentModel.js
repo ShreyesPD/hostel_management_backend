@@ -1,14 +1,14 @@
 
-//applicant model
+//hostelResident model
 module.exports = (sequelize, DataTypes) => {
-    const applicant = sequelize.define("applicant", {
-        applicant_id: {
+    const hostel_resident = sequelize.define("hostel_resident", {
+        hostel_resident_id: {
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             type: DataTypes.INTEGER,
         },
-        sName: {
+        hostel_resident_name: {
             allowNull: false,
             type: DataTypes.STRING,
         },
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             values: ["UG","PG","PhD"],
             allowNull: false
         },
-        applicant_course: {
+        hostel_resident_course: {
             type: DataTypes.STRING,
             allowNull: false
 
@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         contact:{
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        distance:{
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         photo:{
