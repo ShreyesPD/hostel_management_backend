@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false,
         },
-        hostel_descript:{
+        hostel_description:{
             type: DataTypes.STRING,
             allowNull: true,
         },

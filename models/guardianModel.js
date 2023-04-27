@@ -38,10 +38,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        photo:{
-            type: DataTypes.BLOB('long'),
-            allowNull: true,
-        },
         email: {
             type: DataTypes.STRING,
             unique: true,
