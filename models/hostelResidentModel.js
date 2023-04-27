@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         aadhar: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT(12),
             allowNull: false,
         },
         address:{
@@ -54,6 +54,6 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
-    }, { timestamps: true },)
-    return hostel_resident
+    }, { timestamps: true },  {freezeTableName: true})
+    return hostel_resident 
 }

@@ -2,14 +2,16 @@
 //guardian model
 module.exports = (sequelize, DataTypes) => {
     const guardian = sequelize.define("guardian", {
-        applicant_id: {
+        hostel_resident_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'applicant', 
-            referencesKey: 'applicant_id',
+            references: {
+                model: hostel_resident,
+                key: 'hostel_resident_id'
+            },
             type: DataTypes.INTEGER,
         },
-        gName: {
+        guardian_name: {
             allowNull: false,
             primaryKey: true,
             type: DataTypes.STRING,
@@ -25,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         aadhar: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT(12),
             allowNull: false,
         },
         address:{
@@ -36,17 +38,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        photo:{
-            type: DataTypes.BLOB('long'),
-            allowNull: true,
-        },
         email: {
             type: DataTypes.STRING,
             unique: true,
             isEmail: true, 
             allowNull: false
         },
-    }, { timestamps: true },);
-  //  applicant.hasOne(guardian);
+    }, { timestamps: true }, {freezeTableName: true});
     return guardian 
 }

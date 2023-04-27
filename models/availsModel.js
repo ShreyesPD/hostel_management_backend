@@ -5,33 +5,39 @@ module.exports = (sequelize, DataTypes) => {
         package_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'mess', 
-            referencesKey: 'package_id',
+            references: {
+                model: mess,
+                key: 'package_id'
+            },
             type: DataTypes.STRING,
         },
         payment_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'payment', 
-            referencesKey: 'payment_id',
+            references: {
+                model: payment,
+                key: 'payment_id'
+            },
             type: DataTypes.STRING,
         },
-        applicant_id: {
+        hostel_resident_id: {
             allowNull: false,
             primaryKey: true,
-            references: 'applicant', 
-            referencesKey: 'applicant_id',
+            references: {
+                model: hostel_resident,
+                key: 'hostel_resident_id'
+            },
             type: DataTypes.INTEGER,
         },
-        startDate: {
+        start_date: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        end_date: {
             allowNull: false,
             type: DataTypes.DATE,
         },
-        endDate: {
-            allowNull: false,
-            type: DataTypes.DATE,
-        },
-    }, { timestamps: true },);
+    }, { timestamps: true }, {freezeTableName: true});
     
     return avails 
 }

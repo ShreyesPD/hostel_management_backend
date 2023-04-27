@@ -1,15 +1,16 @@
 
-//hostelResident model
+
+//applicant model
 module.exports = (sequelize, DataTypes) => {
-    const hostel_resident = sequelize.define("hostel_resident", {
-        hostel_resident_id: {
+    const applicant = sequelize.define("applicant", {
+        applicant_id: {
+
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             type: DataTypes.INTEGER,
         },
-
-        hostel_resident_name: {
+        applicant_name: {
             allowNull: false,
             type: DataTypes.STRING,
         },
@@ -18,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             values: ["UG","PG","PhD"],
             allowNull: false
         },
-        hostel_resident_course: {
+        applicant_course: {
             type: DataTypes.STRING,
             allowNull: false
 
@@ -29,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         aadhar: {
-            type: DataTypes.INTEGER,
+
+            type: DataTypes.BIGINT(12),
             allowNull: false,
         },
         address:{
@@ -54,6 +56,39 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
-    }, { timestamps: true },)
-    return hostel_resident
+        guardian_name: {
+            allowNull: false,
+            primaryKey: true,
+            type: DataTypes.STRING,
+        },
+        guardian_sex: {
+            type: DataTypes.ENUM,
+            values: ['M','F','O'],
+            allowNull: false
+        },
+        relation: {
+            type: DataTypes.ENUM,
+            values: ['Mother','Father','Guardian'],
+            allowNull: false
+        },
+        guardian_aadhar: {
+            type: DataTypes.BIGINT(12),
+            allowNull: false,
+        },
+        guardian_address:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        guardian_contact:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        guardian_email: {
+            type: DataTypes.STRING,
+            unique: true,
+            isEmail: true, 
+            allowNull: false
+        },
+    }, { timestamps: true },  {freezeTableName: true})
+    return applicant 
 }

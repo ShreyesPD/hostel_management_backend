@@ -15,6 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-    }, { timestamps: true },)
+    }, { timestamps: true }, {freezeTableName: true})
     return mess 
 }
