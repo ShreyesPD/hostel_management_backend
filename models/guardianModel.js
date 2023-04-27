@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         stud_id: {
             allowNull: false,
             primaryKey: true,
-            foreignKey: true,
+            references: 'student', 
+            referencesKey: 'stud_id',
             type: DataTypes.STRING,
         },
         gName: {
@@ -45,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
             isEmail: true, 
             allowNull: false
         },
-    }, { timestamps: true },)
+    }, { timestamps: true },);
+    student.hasOne(guardian);
     return guardian 
 }
