@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: 'mess_package',
+                model: 'mess_packages',
                 key: 'package_id'
             },
             type: DataTypes.STRING,

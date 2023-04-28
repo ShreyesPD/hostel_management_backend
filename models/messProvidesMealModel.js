@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             values: ["breakfast" , "veg_lunch","nonveg_lunch","veg_dinner","nonveg_dinner"],
             references: {
-                model: 'meal_Type',
-                key: 'meals'
+                model: 'meals',
+                key: 'meal_Type'
             },
             allowNull: false,
         },
@@ -20,5 +20,5 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING
         },
     }, { timestamps: true }, {freezeTableName: true})
-    return mess_has_package 
+    return mess_provides_meals
 }

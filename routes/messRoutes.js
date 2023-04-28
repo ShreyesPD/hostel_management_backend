@@ -1,6 +1,6 @@
 //importing modules
 const express = require('express')
-const hostelController = require('../controllers/messController')
+const messController = require('../controllers/messController')
 const { getMessFeePerDay, getMessFeePerMeal, getMessPackageFee } = messController
 // const userAuth = require('../Middlewares/userAuth')
 
