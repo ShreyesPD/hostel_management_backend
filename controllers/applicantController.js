@@ -98,7 +98,6 @@ const sortApplicantByDistance = async(req,res) => {
 //     }
 // }
 
-
 module.exports = {
     getAllApplicant,
     createApplicant,
