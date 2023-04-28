@@ -11,13 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.INTEGER,
         },
-        no_of_beds: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-        },
-        no_of_tables: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
+        no_of_available_beds: {
+            type: DataTypes.ENUM,
+            values: [0,1,2],
+            defaultValue: 2
         },
         hostel_id: {
             allowNull: false,
