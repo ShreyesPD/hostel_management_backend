@@ -1,20 +1,24 @@
 
-//room model
+//roomAllot model
 module.exports = (sequelize, DataTypes) => {
-    const room = sequelize.define("rooms", {
-        room_no: {
+    const enroll = sequelize.define("enrolls", {
+        payment_id: {
             allowNull: false,
             primaryKey: true,
+            references: {
+                model: 'payment',
+                key: 'payment_id'
+            },
             type: DataTypes.INTEGER,
         },
-        key_no: {
+        applicant_id: {
             allowNull: false,
+            primaryKey: true,
+            references: {
+                model: 'applicants',
+                key: 'applicant_id'
+            },
             type: DataTypes.INTEGER,
-        },
-        no_of_available_beds: {
-            type: DataTypes.ENUM,
-            values: [0,1,2],
-            defaultValue: 2
         },
         hostel_id: {
             allowNull: false,
@@ -24,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'hostel_id'
             },
             type: DataTypes.INTEGER,
-        },
+        }
     }, { timestamps: true }, {freezeTableName: true})
-    return room 
+    return enroll 
 }

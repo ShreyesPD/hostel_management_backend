@@ -11,30 +11,12 @@ module.exports = (sequelize, DataTypes) => {
             },
             type: DataTypes.INTEGER,
         },
-        payment_id: {
-            allowNull: false,
-            primaryKey: true,
-            references: {
-                model: 'payments',
-                key: 'payment_id'
-            },
-            type: DataTypes.STRING,
-        },
         hostel_resident_id: {
             allowNull: false,
             primaryKey: true,
             references: {
                 model: 'hostel_residents',
                 key: 'hostel_resident_id'
-            },
-            type: DataTypes.INTEGER,
-        },
-        warden_id: {
-            allowNull: false,
-            primaryKey: true,
-            references: {
-                model: 'wardens',
-                key: 'warden_id'
             },
             type: DataTypes.INTEGER,
         },
