@@ -33,8 +33,10 @@ const createApplicant = async (req, res) => {
         };
 
         const appl = await applicants.create(data)
-    
+        
         console.log("applicant record inserted")
+        return res.status(201).send("user added");
+
 
     } catch (error) {
         console.log("applicant record were not inserted")

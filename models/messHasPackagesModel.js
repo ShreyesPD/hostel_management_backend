@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const mess_has_package = sequelize.define("mess_has_package", {
+    const mess_has_package = sequelize.define("mess_has_packages", {
         package_id: {
             allowNull: false,
             primaryKey: true,
