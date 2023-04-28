@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
+        reciept:{
+            type: DataTypes.BLOB('long'),
+            allowNull: true,
+        }
     }, { timestamps: true }, {freezeTableName: true})
     return payment 
 }
