@@ -1,7 +1,7 @@
 
 //mess_package model
 module.exports = (sequelize, DataTypes) => {
-    const mess_package = sequelize.define("mess_package", {
+    const mess_package = sequelize.define("mess_packages", {
         package_id: {
             allowNull: false,
             primaryKey: true,
@@ -16,6 +16,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
+        package_period_five_day: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 125
+        },
+        package_period_seven_day: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 175
+        }        
     }, { timestamps: true }, {freezeTableName: true})
     return mess_package 
 }

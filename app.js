@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const applicantRoutes = require ('./routes/applicantRoutes')
 const hostelRoutes = require ('./routes/hostelRoutes')
-//  const worksOnRoutes = require ('./Routes/worksOnRoutes')
+const messRoutes = require ('./routes/messRoutes')
 //  const leaveRoutes = require ('./Routes/leaveRoutes')
 
 
@@ -29,6 +29,7 @@ db.sequelize.sync({ force: false }).then(() => {
 //routes for the user API
 app.use('/api/applicant', applicantRoutes)
 app.use('/api/hostel', hostelRoutes)
+app.use('/api/mess', messRoutes)
 
 // app.use('/api/worksOn',worksOnRoutes)
 // app.use('/api/Leave',leaveRoutes)

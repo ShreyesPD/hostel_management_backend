@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const mess_has_package = sequelize.define("mess_has_package", {
+    const mess_provides_meals = sequelize.define("mess_provides_meals", {
         meal_Type: {
             type: DataTypes.ENUM,
             primaryKey: true,
