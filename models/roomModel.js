@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         hostel_id: {
             allowNull: false,
+            primaryKey: true,
             references: {
                 model: 'hostels',
                 key: 'hostel_id'

@@ -3,9 +3,27 @@
 const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
+const mess = db.mess;
 const messP = db.mess_package;
 const meals = db.meal;
  
+const createMess = async (req, res) => {
+    try {
+        const { mess_id , mess_description } = req.body;
+        const data = {
+            mess_id , 
+            mess_description
+        };
+
+        const messs = await mess.create(data)
+
+        console.log("mess record inserted" )
+        res.status(200).send(messs);
+    } catch (error) {
+        console.log("mess record were not inserted")
+        console.log(error);
+    }
+}
 
 const getMessFeePerDay = async(req,res) => {
 
@@ -109,6 +127,7 @@ const getMessPackageFee = async(req,res) => {
 
 
 module.exports = {
+    createMess,
     getMessFeePerDay,
     getMessFeePerMeal,
     getMessPackageFee

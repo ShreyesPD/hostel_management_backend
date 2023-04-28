@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         hostel_resident_course: {
             type: DataTypes.STRING,
             allowNull: false
-
         },
         sex: {
             type: DataTypes.ENUM,

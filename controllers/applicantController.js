@@ -35,7 +35,7 @@ const createApplicant = async (req, res) => {
         const appl = await applicants.create(data)
         
         console.log("applicant record inserted")
-        return res.status(201).send("user added");
+        return res.status(201).send(appl);
 
     } catch (error) {
         console.log("applicant record were not inserted")
@@ -58,7 +58,6 @@ const getAllApplicant = async(req,res) => {
 
 
 const findApplicantByNameCourse = async(req,res) => {
-    console.log('hello')
     try{
         const appl = await applicants.findAll({
             where: {
@@ -72,6 +71,7 @@ const findApplicantByNameCourse = async(req,res) => {
     }
 };
 
+
 const sortApplicantByDistance = async(req,res) => {
     try{
 
@@ -84,6 +84,34 @@ const sortApplicantByDistance = async(req,res) => {
 
     }catch (error){
         console.log(error);
+    }
+}
+
+const updateApplicationStatus = async(req,res) => {
+    try{
+        const {applicant_id,application_status} = req.body;
+        const updateStatus = await applicants.update({ application_status : application_status}, {
+            where: {
+                applicant_id: applicant_id
+            }
+          });
+          res.status(200).send(updateStatus);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+const deleteApplicant = async(req,res) => {
+    try{
+
+        const deleteApp = await applicants.destroy({
+            where: {
+                application_status: "rejected"
+            }
+          });
+          res.status(200).send(deleteApp);
+    }catch(error){
+        console.log("failed to delete");
     }
 }
 
@@ -101,5 +129,7 @@ module.exports = {
     getAllApplicant,
     createApplicant,
     findApplicantByNameCourse,
-    sortApplicantByDistance
+    sortApplicantByDistance,
+    updateApplicationStatus,
+    deleteApplicant
 };
