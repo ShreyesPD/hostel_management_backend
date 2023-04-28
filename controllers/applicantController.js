@@ -7,10 +7,9 @@ const applicants = db.applicant;
 
 const createApplicant = async (req, res) => {
     try {
-        const { applicant_id , applicant_Name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email } = req.body;
+        const { applicant_name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email , application_status} = req.body;
         const data = {
-            applicant_id , 
-            applicant_Name ,
+            applicant_name ,
             course_type ,
             applicant_course ,
             sex ,
@@ -29,12 +28,13 @@ const createApplicant = async (req, res) => {
             guardian_aadhar , 
             guardian_address , 
             guardian_contact , 
-            guardian_email
+            guardian_email ,
+            application_status
         };
 
         const appl = await applicants.create(data)
     
-        console.log("applicant record inserted", " " ,appl )
+        console.log("applicant record inserted")
 
     } catch (error) {
         console.log("applicant record were not inserted")
@@ -55,21 +55,36 @@ const getAllApplicant = async(req,res) => {
 };
 
 
+
 const findApplicantByNameCourse = async(req,res) => {
     console.log('hello')
     try{
-        const user = await applicants.findOne({
+        const appl = await applicants.findAll({
             where: {
-                app_course : req.params['applicant_course'],
-                app_name : req.params['applicant_name']
+                applicant_course : req.params['applicant_course'],
+                applicant_name : req.params['applicant_name']
             } 
         });
-        res.status(200).send(user);
+        res.status(200).send(appl);
     }catch (error){
         console.log(error);
     }
 };
 
+const sortApplicantByDistance = async(req,res) => {
+    try{
+
+        const sort =await applicants.findAll({
+            order: [
+              ['distance', 'DESC']
+            ]
+        });
+        res.status(200).send(sort);
+
+    }catch (error){
+        console.log(error);
+    }
+}
 
 // const getStudent = async(req,res) => {
 //     console.log('hello')
@@ -85,5 +100,6 @@ const findApplicantByNameCourse = async(req,res) => {
 module.exports = {
     getAllApplicant,
     createApplicant,
-    findApplicantByNameCourse
+    findApplicantByNameCourse,
+    sortApplicantByDistance
 };

@@ -32,6 +32,7 @@ const getCurrentWarden = async(req,res) => {
 //     }
 // }
 
+
 module.exports = {
     getAllWarden ,
     getCurrentWarden

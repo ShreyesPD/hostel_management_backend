@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
         },
         applicant_name: {
-            allowNull: false,
             type: DataTypes.STRING,
+            allowNull: false
         },
         course_type: {
             type: DataTypes.ENUM,

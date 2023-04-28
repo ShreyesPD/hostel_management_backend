@@ -24,7 +24,7 @@ const createHostel = async (req, res) => {
 
         const hostel = await hostels.create(data)
 
-        console.log("hostel record inserted", " " ,hostel )
+        console.log("hostel record inserted" )
     } catch (error) {
         console.log("hostel record were not inserted")
         console.log(error);
