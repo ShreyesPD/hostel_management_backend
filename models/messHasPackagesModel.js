@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: 'messes',
+                model: 'mess',
                 key: 'mess_id'
             },
             type: DataTypes.STRING
