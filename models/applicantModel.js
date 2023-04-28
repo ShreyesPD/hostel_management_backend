@@ -92,9 +92,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         guardian_email: {
             type: DataTypes.STRING,
-            unique: true,
             isEmail: true, 
-            allowNull: false
+            allowNull: true
         },
         application_status:{
             type: DataTypes.ENUM,
