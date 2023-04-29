@@ -36,7 +36,7 @@ const getVacancy = async(req,res) => {
     console.log('hello')
     try{
         const host_type = req.params['hostel_type']
-        const {res,data} = db.sequelize.query('select sum(no_of_available_beds) from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostel_type=${host_type}')
+        const {res,data} = db.sequelize.query(`select sum('no_of_available_beds') from rooms,hostels where 'rooms.hostel_id'='hostels.hostel_id' and 'hostels.hostel_type'=${host_type}`)
         
         // const hostResd = await hostelResidents.count({
         //     where : {

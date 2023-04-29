@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         no_of_available_beds: {
             type: DataTypes.ENUM,
-            values: [0,1,2],
-            defaultValue: 2
+            values: ["0","1","2"],
+            defaultValue: "2"
         },
         hostel_id: {
             allowNull: false,

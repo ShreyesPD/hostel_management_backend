@@ -9,17 +9,13 @@ const enrolls = db.enroll;
 const insertApplicantPaymentDetail = async (req, res) => {
     
     try {
-        const { package_id, payment_id ,hostel_resident_id,start_date,end_date } = req.body;
+        const { payment_id, payment_description ,payment_amt,reciept} = req.body;
         const data = {
-            package_id, 
-            payment_id ,
-            hostel_resident_id,
-            start_date,
-            end_date
+            payment_id, payment_description ,payment_amt,reciept
         }
-        const packRes = await avai.create(data)
+        const appPayDet = await avai.create(data)
         
-        return res.status(201).send(packRes);
+        return res.status(201).send(appPayDet);
 
     }catch(error){
         console.log(error)
@@ -27,12 +23,12 @@ const insertApplicantPaymentDetail = async (req, res) => {
 
 }
 
-const getResidentPackageInfo = async(req,res) => {
+const getApplicantPaymentInfo = async(req,res) => {
     try{
         const appl = await db.avails.findAll({
-            attributes:[package_id, payment_id ,start_date,end_date],
+            attributes:[payment_description ,payment_amt,reciept],
             where: {
-                hostel_resident_id : req.params['hostel_resident_id'],
+                payment_id : req.params['payment_id'],
             }
         });
         res.status(200).send(appl);
@@ -43,14 +39,6 @@ const getResidentPackageInfo = async(req,res) => {
 
 
 module.exports = {
-    insertMessPackageOfResident,
-    
-};
-
-
-
-
-
-module.exports = {
-    
+    insertApplicantPaymentDetail,
+    getApplicantPaymentInfo
 };
