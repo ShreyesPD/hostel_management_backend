@@ -10,9 +10,8 @@ const rooms = db.room;
 
 const createHostel = async (req, res) => {
     try {
-        const { hostel_id , capacity , hostel_type , accommodation_fee_per_day , security_deposit , location , office_contact ,office_email, hostel_descript } = req.body;
+        const { capacity , hostel_type , accommodation_fee_per_day , security_deposit , location , office_contact ,office_email, hostel_descript } = req.body;
         const data = {
-            hostel_id , 
             capacity ,
             hostel_type ,
             accommodation_fee_per_day ,
@@ -24,6 +23,7 @@ const createHostel = async (req, res) => {
         };
 
         const hostel = await hostels.create(data)
+        res.status(200).send("records inserted")
 
         console.log("hostel record inserted" )
     } catch (error) {
@@ -36,7 +36,7 @@ const getVacancy = async(req,res) => {
     console.log('hello')
     try{
         const host_type = req.params['hostel_type']
-        const {res,data} = db.sequelize.query(`select sum('no_of_available_beds') from rooms,hostels where 'rooms.hostel_id'='hostels.hostel_id' and 'hostels.hostel_type'=${host_type}`)
+        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_type='${host_type}'`)
         
         // const hostResd = await hostelResidents.count({
         //     where : {
@@ -51,8 +51,8 @@ const getVacancy = async(req,res) => {
         // })
         // const vacc = capacity - hostResd 
 
-        console.log({res});
-        res.status(200).send(res);
+        console.log({data});
+        res.status(200).send(resu);
     }catch (error){
         console.log(error);
     }

@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         //in terms of head count 
         capacity: {
-            allowNull: false,
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER ,
+            allowNull: true ,
+            defaultValue :  150 
         },
         hostel_type: {
             type: DataTypes.ENUM,

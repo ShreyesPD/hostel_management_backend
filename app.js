@@ -8,6 +8,7 @@ const db = require('./models')
 const applicantRoutes = require ('./routes/applicantRoutes')
 const hostelRoutes = require ('./routes/hostelRoutes')
 const messRoutes = require ('./routes/messRoutes')
+const wardenRoutes = require ('./routes/wardenRoutes')
 // const triggerQuerry = require('./middlewares/triggers')
 const { raw } = require('mysql2')
 //  const leaveRoutes = require ('./Routes/leaveRoutes')
@@ -42,7 +43,7 @@ db.sequelize.sync({ force: false }).then(() => {
 app.use('/api/applicant', applicantRoutes)
 app.use('/api/hostel', hostelRoutes)
 app.use('/api/mess', messRoutes)
-
+app.use('/api/warden',wardenRoutes)
 // app.use('/api/worksOn',worksOnRoutes)
 // app.use('/api/Leave',leaveRoutes)
 

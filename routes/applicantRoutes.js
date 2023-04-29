@@ -18,7 +18,7 @@ router.post('/createApplicant', createApplicant)
 ///name/:applicant_name/c_type/:course_type/course/:applicant_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/distance/:distance/photo/:photo/email/:email/med_cerf/:medical_certificate/bona_cerf/:bonified_certificate/start_date/:start_date/end_date/:end_date/g_name/:guardian_name/relation/:relation/g_aadhar/:guardian_aadhar/g_address/:guardian_address/g_contact/:guardian_contact/g_email/:guardian_email/app_stat/:application_status
 router.get('/findApplicantByNameCourse/:applicant_name/:applicant_course', findApplicantByNameCourse)
 router.get('/sortApplicantByDistance', sortApplicantByDistance)
-router.get('/showWaitingList', showWaitingList)
+router.get('/showWaitingList', applicantController.showWaitingList)
 router.post('/updateApplicationStatus', updateApplicationStatus)
 router.delete('/deleteApplicant',deleteApplicant)
 
