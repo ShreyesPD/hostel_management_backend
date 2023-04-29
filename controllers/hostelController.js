@@ -4,7 +4,8 @@ const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
 const hostels = db.hostel;
-const hostelResidents = db.hostelResident
+const hostelResidents = db.hostelResident;
+const rooms = db.room;
 
 
 const createHostel = async (req, res) => {
@@ -34,23 +35,24 @@ const createHostel = async (req, res) => {
 const getVacancy = async(req,res) => {
     console.log('hello')
     try{
-
         const host_type = req.params['hostel_type']
-        const hostResd = await hostelResidents.count({
-            where : {
-                hostel_type : host_type
-            }
-        })
-        const capacity = await hostels.sum('capacity', 
-        {
-            where :{
-                hostel_type : host_type
-            }
-        })
-        const vacc = capacity - hostResd 
+        const {res,data} = db.sequelize.query('select sum(no_of_available_beds) from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostel_type=${host_type}')
+        
+        // const hostResd = await hostelResidents.count({
+        //     where : {
+        //         hostel_type : host_type
+        //     }
+        // })
+        // const capacity = await hostels.sum('capacity', 
+        // {
+        //     where :{
+        //         hostel_type : host_type
+        //     }
+        // })
+        // const vacc = capacity - hostResd 
 
-        console.log({vacc});
-        res.status(200).send(vacc);
+        console.log({res});
+        res.status(200).send(res);
     }catch (error){
         console.log(error);
     }

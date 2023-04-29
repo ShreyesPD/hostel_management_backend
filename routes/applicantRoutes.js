@@ -1,7 +1,7 @@
 //importing modules
 const express = require('express')
 const applicantController = require('../controllers/applicantController')
-const { getAllApplicant , createApplicant , findApplicantByNameCourse , sortApplicantByDistance} = applicantController
+const { getAllApplicant , createApplicant , findApplicantByNameCourse , sortApplicantByDistance,updateApplicationStatus,deleteApplicant} = applicantController
 // const userAuth = require('../Middlewares/userAuth')
 
 const router = express.Router()
@@ -18,6 +18,9 @@ router.post('/createApplicant', createApplicant)
 ///name/:applicant_name/c_type/:course_type/course/:applicant_course/sex/:sex/aadhar/:aadhar/adr/:address/cont/:contact/distance/:distance/photo/:photo/email/:email/med_cerf/:medical_certificate/bona_cerf/:bonified_certificate/start_date/:start_date/end_date/:end_date/g_name/:guardian_name/relation/:relation/g_aadhar/:guardian_aadhar/g_address/:guardian_address/g_contact/:guardian_contact/g_email/:guardian_email/app_stat/:application_status
 router.get('/findApplicantByNameCourse/:applicant_name/:applicant_course', findApplicantByNameCourse)
 router.get('/sortApplicantByDistance', sortApplicantByDistance)
+router.post('/updateApplicationStatus', updateApplicationStatus)
+router.delete('/deleteApplicant',deleteApplicant)
+
 
 
 

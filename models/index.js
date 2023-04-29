@@ -10,6 +10,7 @@ const sequelize = new Sequelize(
   }
 );
 
+
 //checking if connection is done
 sequelize.authenticate().then(() => {
    console.log('Connection has been established successfully.');
@@ -39,7 +40,6 @@ db.room = require('./roomModel')(sequelize, DataTypes)
 db.hostelWarden = require('./hostelWardenModel')(sequelize, DataTypes)
 db.avails = require('./availsModel')(sequelize, DataTypes)
 db.roomAllotment = require('./roomAllotmentModel')(sequelize, DataTypes)
-
 
 
 //exporting the module

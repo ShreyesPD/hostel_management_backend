@@ -1,12 +1,15 @@
 //importing modules
 const express = require('express')
 const sequelize = require('sequelize')
+
 //const dotenv = require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const db = require('./models')
 const applicantRoutes = require ('./routes/applicantRoutes')
 const hostelRoutes = require ('./routes/hostelRoutes')
 const messRoutes = require ('./routes/messRoutes')
+// const triggerQuerry = require('./middlewares/triggers')
+const { raw } = require('mysql2')
 //  const leaveRoutes = require ('./Routes/leaveRoutes')
 
 
@@ -25,6 +28,15 @@ app.use(cookieParser())
 db.sequelize.sync({ force: false }).then(() => {
     console.log("db has been re sync")
 })
+
+// Sequelize.query(triggerQuerry,{raw : true})
+// .then(() => {
+//     console.log('trigger created')
+// })
+// .catch(error => {
+//     console.log('error creating trigger', error)
+// });
+
 
 //routes for the user API
 app.use('/api/applicant', applicantRoutes)

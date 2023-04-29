@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: 'payment',
+                model: 'payments',
                 key: 'payment_id'
             },
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
         },
         applicant_id: {
             allowNull: false,
