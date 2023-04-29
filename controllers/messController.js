@@ -55,19 +55,19 @@ const getMessFeePerMeal = async(req,res) => {
         const messFeeVegBreakFast = await meals.findOne({
             attributes :['amt'] ,
             where : {
-                meal_Type : req.params['breakfast']
+                meal_Type : 'breakfast'
             }
         })
         const messFeeVegLunch = await meals.findOne({
             attributes :['amt'] ,
             where : {
-                meal_Type : req.params['veg_lunch']
+                meal_Type : 'veg_lunch'
             }
         })
         const messFeeNonVegLunch = await meals.findOne({
             attributes :['amt'] ,
             where : {
-                meal_Type : req.params['nonveg_lunch']
+                meal_Type : 'nonveg_lunch'
             }
         })
 
@@ -85,19 +85,19 @@ const getMessPackageFee = async(req,res) => {
         const messFeeVegFiveDay = await messP.findOne({
             attributes :['amt_per_day'] ,
             where : {
-                package_description : req.params['5_day_veg']
+                package_description : '5_day_veg'
             }
         })
-        const final_messFeeVegFiveDay = messFeeVegFiveDay *  req.params['package_period_five_day'];
+        const final_messFeeVegFiveDay = messFeeVegFiveDay * 'package_period_five_day'
 
         const messFeeVegSevenDay = await messP.findOne({
             attributes :['amt_per_day'] ,
             where : {
-                package_description : req.params['7_day_veg']
+                package_description : '7_day_veg'
             }
         })
 
-        const final_messFeeVegSevenDay = messFeeVegSevenDay * req.params['package_period_seven_day'];
+        const final_messFeeVegSevenDay = messFeeVegSevenDay * 'package_period_seven_day';
 
         const messFeeNonVegFiveDay = await messP.findOne({
             attributes :['amt_per_day'] ,
@@ -106,16 +106,16 @@ const getMessPackageFee = async(req,res) => {
             }
         })
  
-        const final_messFeeNonVegFiveDay = messFeeNonVegFiveDay * req.params['package_period_five_day'];
+        const final_messFeeNonVegFiveDay = messFeeNonVegFiveDay * 'package_period_five_day';
 
         const messFeeNonVegSevenDay = await messP.findOne({
             attributes :['amt_per_day'] ,
             where : {
-                package_description : req.params['7_day_nonveg']
+                package_description : '7_day_nonveg'
             }
         })
         
-        const final_messFeeNonVegSevenDay = messFeeNonVegSevenDay *  req.params['package_period_seven_day'];
+        const final_messFeeNonVegSevenDay = messFeeNonVegSevenDay * 'package_period_seven_day';
 
         console.log({final_messFeeVegFiveDay,final_messFeeVegSevenDay,final_messFeeNonVegFiveDay,final_messFeeNonVegSevenDay});
         res.status(200).send(final_messFeeVegFiveDay,final_messFeeVegSevenDay,final_messFeeNonVegFiveDay,final_messFeeNonVegSevenDay);
