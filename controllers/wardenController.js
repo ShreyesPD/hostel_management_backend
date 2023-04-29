@@ -21,6 +21,7 @@ const getCurrentWarden = async(req,res) => {
         const currWard1 = await hostelWardens.findOne({
             attributes : ['warden_id'],
             where : {
+                hostel_id : req.params['hostel_id'],
                 end_date : null
             }
         })
