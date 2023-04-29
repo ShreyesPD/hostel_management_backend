@@ -1,5 +1,6 @@
 //importing modules
 // const bcrypt = require("bcrypt");
+const { QueryInterface } = require("sequelize");
 const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
@@ -86,6 +87,20 @@ const sortApplicantByDistance = async(req,res) => {
         console.log(error);
     }
 }
+
+const showWaitingList = async(req,res) => {
+    try{
+
+        const wait_list = await QueryInterface.Sequelize.query(
+           `CREATE VIEW wait_list AS  select applicant_name, distance from applicants order by distance desc`
+        );
+          res.status(200).send(wait_list);
+    }catch(error){
+        console.log("failed to display waiting list");
+    }
+}
+
+
 
 const updateApplicationStatus = async(req,res) => {
     try{
