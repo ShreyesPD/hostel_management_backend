@@ -145,6 +145,7 @@ module.exports = {
     createApplicant,
     findApplicantByNameCourse,
     sortApplicantByDistance,
+    showWaitingList,
     updateApplicationStatus,
     deleteApplicant
 };
