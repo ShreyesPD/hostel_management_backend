@@ -16,16 +16,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        package_period_five_day: {
+        package_period: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 125
-        },
-        package_period_seven_day: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 175
-        }        
+            defaultValue: 125,
+        }   
     }, { timestamps: true }, {freezeTableName: true})
     return mess_package 
 }
