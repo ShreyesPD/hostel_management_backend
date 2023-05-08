@@ -5,6 +5,7 @@ const db = require("../models");
 
 const wardens = db.warden;
 const hostelWardens  = db.hostelWarden
+const applicants = db.applicant;
 
 
 const getAllWarden = async(req,res) => {
@@ -77,7 +78,6 @@ const getVacancyBYWardenMail = async(req,res) => {
     console.log('hello')
     try{
 
-
         const wardenEmail = req.params['email']
 
         const wardenId = await wardens.findOne({
@@ -104,6 +104,19 @@ const getVacancyBYWardenMail = async(req,res) => {
     }
 };
 
+const getNewApplicants = async(req,res) => {
+    try{
+        const appl = await applicants.count({
+            where: {
+                application_status : req.params['application_status'],
+            } 
+        });
+        res.status(200).send(appl);
+    }catch (error){
+        console.log(error);
+    }
+};
+
 
 // const getStudent = async(req,res) => {
 //     console.log('hello')
@@ -120,5 +133,6 @@ module.exports = {
     getAllWarden ,
     getCurrentWarden,
     createWarden,
-    getVacancyBYWardenMail
+    getVacancyBYWardenMail,
+    getNewApplicants
 };
