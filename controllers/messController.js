@@ -32,7 +32,7 @@ const getMessFeePerDay = async(req,res) => {
         const messFeeVeg = await messP.findOne({
             attributes :['amt_per_day'] ,
             where : {
-                package_description : req.params['meal_type'] //"5_day_veg"
+                package_description : req.params['package_description'] //"5_day_veg"
             }
         })
         // const messFeeNonVeg = await messP.findOne({
