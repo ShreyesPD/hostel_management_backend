@@ -42,8 +42,8 @@ const getMessFeePerDay = async(req,res) => {
         //     }
         // })
 
-        console.log(messFeeVeg,messFeeNonVeg);
-        res.status(200).send(messFeeVeg,messFeeNonVeg);
+        console.log(messFeeVeg);
+        res.status(200).send(messFeeVeg);
     }catch (error){
         console.log(error);
     }
@@ -53,27 +53,27 @@ const getMessFeePerDay = async(req,res) => {
 const getMessFeePerMeal = async(req,res) => {
 
     try{
-        const messFeeVegBreakFast = await meals.findOne({
+        const messFee = await meals.findOne({
             attributes :['amt'] ,
             where : {
-                meal_Type : 'breakfast'
+                meal_Type : req.params['meal_type']
             }
         })
-        const messFeeVegLunch = await meals.findOne({
-            attributes :['amt'] ,
-            where : {
-                meal_Type : 'veg_lunch'
-            }
-        })
-        const messFeeNonVegLunch = await meals.findOne({
-            attributes :['amt'] ,
-            where : {
-                meal_Type : 'nonveg_lunch'
-            }
-        })
+        // const messFeeVegLunch = await meals.findOne({
+        //     attributes :['amt'] ,
+        //     where : {
+        //         meal_Type : 'veg_lunch'
+        //     }
+        // })
+        // const messFeeNonVegLunch = await meals.findOne({
+        //     attributes :['amt'] ,
+        //     where : {
+        //         meal_Type : 'nonveg_lunch'
+        //     }
+        // })
 
-        console.log(messFeeVegBreakFast,messFeeVegLunch,messFeeNonVegLunch);
-        res.status(200).send(messFeeVegBreakFast,messFeeVegLunch,messFeeNonVegLunch);
+        console.log(messFee);
+        res.status(200).send(messFee);
     }catch (error){
         console.log(error);
     }

@@ -7,9 +7,9 @@ const { createMess, getMessFeePerDay, getMessFeePerMeal, getMessPackageFee } = m
 const router = express.Router()
 
 router.post('/createMess', createMess)
-router.get('/getMessFeePerDay/:5_day_veg/:5_day_nonveg', getMessFeePerDay) //:package_discription
-router.get('/getMessFeePerMeal/:meal_Type/', getMessFeePerMeal)
-router.get('/getMessPackageFee/:package_description', getMessPackageFee)
+router.get('/getMessFeePerDay/:5_day_veg', getMessFeePerDay) //:package_discription
+router.get('/getMessFeePerMeal/:meal_type', getMessFeePerMeal)
+router.get('/getMessPackageFee', getMessPackageFee)
 
 
 module.exports = router
