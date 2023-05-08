@@ -2,15 +2,15 @@
 //roomAllot model
 module.exports = (sequelize, DataTypes) => {
     const enroll = sequelize.define("enrolls", {
-        payment_id: {
-            allowNull: false,
-            primaryKey: true,
-            references: {
-                model: 'payments',
-                key: 'payment_id'
-            },
-            type: DataTypes.STRING,
-        },
+        // payment_id: {
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     references: {
+        //         model: 'payments',
+        //         key: 'payment_id'
+        //     },
+        //     type: DataTypes.STRING,
+        // },
         applicant_id: {
             allowNull: false,
             primaryKey: true,

@@ -49,7 +49,11 @@ const createApplicant = async (req, res) => {
 const getAllApplicant = async(req,res) => {
     console.log('hello')
     try{
-        const allApp = await applicants.findAll();
+        const allApp = await applicants.findAll({
+            where : {
+                application_status : 'waiting'
+            }
+        });
         console.log({allApp});
         res.status(200).send(allApp);
     }catch (error){

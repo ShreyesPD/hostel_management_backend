@@ -2,6 +2,10 @@
 //payment model
 module.exports = (sequelize, DataTypes) => {
     const payment = sequelize.define("payments", {
+        applicant_id : {
+            primaryKey:true,
+            type: DataTypes.INTEGER,
+        },
         payment_id: {
             allowNull: false,
             primaryKey: true,
