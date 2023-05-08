@@ -1,5 +1,6 @@
 
 //hostelWarden model
+
 module.exports = (sequelize, DataTypes) => {
     const hostel_warden = sequelize.define("hostel_wardens", {
         hostel_id: {
@@ -33,3 +34,4 @@ module.exports = (sequelize, DataTypes) => {
 
     return hostel_warden 
 }
+

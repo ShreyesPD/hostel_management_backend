@@ -6,6 +6,7 @@ const db = require("../models");
 const wardens = db.warden;
 const hostelWardens  = db.hostelWarden
 
+
 const getAllWarden = async(req,res) => {
     try{
         const allWard = await wardens.findAll();
@@ -72,6 +73,38 @@ const createWarden = async (req, res) => {
 }
 
 
+const getVacancyBYWardenMail = async(req,res) => {
+    console.log('hello')
+    try{
+
+
+        const wardenEmail = req.params['email']
+
+        const wardenId = await wardens.findOne({
+            attributes : ['warden_id'],
+            where : {
+                    email : wardenEmail
+            }
+        });
+
+        const hostelId = await hostelWardens.findOne({
+            attributes : ['hostel_id'],
+            where : {
+                warden_id : wardenId , 
+                end_date : null
+            }
+        })
+
+        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_id='${hostelId}'`)
+        
+        console.log({data});
+        res.status(200).send(resu);
+    }catch (error){
+        console.log(error);
+    }
+};
+
+
 // const getStudent = async(req,res) => {
 //     console.log('hello')
 //     try{
@@ -86,5 +119,6 @@ const createWarden = async (req, res) => {
 module.exports = {
     getAllWarden ,
     getCurrentWarden,
-    createWarden
+    createWarden,
+    getVacancyBYWardenMail
 };
