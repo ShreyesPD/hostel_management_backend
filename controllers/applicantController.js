@@ -1,6 +1,6 @@
 //importing modules
 // const bcrypt = require("bcrypt");
-const { QueryInterface } = require("sequelize");
+const sequelize = require('sequelize')
 const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
@@ -8,6 +8,7 @@ const applicants = db.applicant;
 
 const createApplicant = async (req, res) => {
     try {
+        console.log({req:req.body})
         const { applicant_name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email , application_status} = req.body;
         const data = {
             applicant_name ,
@@ -32,11 +33,11 @@ const createApplicant = async (req, res) => {
             guardian_email ,
             application_status
         };
-
+        console.log({applicant_name})
         const appl = await applicants.create(data)
         
         console.log("applicant record inserted")
-        return res.status(201).send(appl);
+        return res.status(200).send(appl);
 
     } catch (error) {
         console.log("applicant record were not inserted")
@@ -91,12 +92,12 @@ const sortApplicantByDistance = async(req,res) => {
 const showWaitingList = async(req,res) => {
     try{
 
-        const wait_list = await QueryInterface.Sequelize.query(
+        const [resu,data] = await db.sequelize.query(
            `CREATE VIEW wait_list AS  select applicant_name, distance from applicants order by distance desc`
         );
-          res.status(200).send(wait_list);
+          res.status(200).send(resu);
     }catch(error){
-        console.log("failed to display waiting list");
+        console.log("failed to e waiting list",error);
     }
 }
 

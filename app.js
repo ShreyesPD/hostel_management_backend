@@ -10,7 +10,8 @@ const hostelRoutes = require ('./routes/hostelRoutes')
 const messRoutes = require ('./routes/messRoutes')
 const wardenRoutes = require ('./routes/wardenRoutes')
 // const triggerQuerry = require('./middlewares/triggers')
-const { raw } = require('mysql2')
+const { raw } = require('mysql2');
+var cors = require('cors')
 //  const leaveRoutes = require ('./Routes/leaveRoutes')
 
 
@@ -19,7 +20,7 @@ const PORT = process.env.PORT || 8080
 
 //assigning the variable app to express
 const app = express()
-
+app.use(cors())
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
