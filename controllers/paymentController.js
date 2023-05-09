@@ -3,19 +3,19 @@
 const db = require("../models");
 // const jwt = require("jsonwebtoken");
 
-const payment = db.payment;
+const payments = db.payment;
 const enrolls = db.enroll;
 
 const insertApplicantPaymentDetail = async (req, res) => {
     
     try {
-        const { payment_id, payment_description ,payment_amt,reciept} = req.body;
+        const { applicant_id, payment_id, payment_description ,payment_amt,reciept} = req.body;
         const data = {
-            payment_id, payment_description ,payment_amt,reciept
+            applicant_id,payment_id, payment_description ,payment_amt,reciept
         }
-        const appPayDet = await avai.create(data)
+        const appPayDet = await payments.create(data)
         
-        return res.status(201).send(appPayDet);
+        return res.status(200).send(appPayDet);
 
     }catch(error){
         console.log(error)
@@ -25,7 +25,7 @@ const insertApplicantPaymentDetail = async (req, res) => {
 
 const getApplicantPaymentInfo = async(req,res) => {
     try{
-        const appl = await db.avails.findAll({
+        const appl = await payments.findAll({
             attributes:[payment_description ,payment_amt,reciept],
             where: {
                 payment_id : req.params['payment_id'],

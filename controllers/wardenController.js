@@ -6,7 +6,8 @@ const db = require("../models");
 const wardens = db.warden;
 const hostelWardens  = db.hostelWarden
 const applicants = db.applicant;
-
+const payments = db.payment;
+const rooms = db.room;
 
 const getAllWarden = async(req,res) => {
     try{
@@ -95,7 +96,7 @@ const getVacancyBYWardenMail = async(req,res) => {
             }
         })
 
-        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_id='${hostelId}'`)
+        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) as vacancy from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_id='${hostelId}'`)
         
         console.log({data});
         res.status(200).send(resu);
@@ -117,6 +118,35 @@ const getNewApplicants = async(req,res) => {
     }
 };
 
+const getAlllotRoomData = async(req,res) => {
+    try{
+        const data= await payments.findAll({
+            attributes:['applicant_id','payment_id','payment_amt']
+        })
+        
+       const applicant_name = await applicants.findOne 
+    }catch (error){
+        console.log(error)
+    }
+}
+
+const getAvailableRoom = async(req,res) => {
+    try{
+        const data= await rooms.findAll({
+            attributes:['room_no'],
+            where :{
+                no_of_available_beds : {
+                    [op.lt] : 2 
+                },
+                hostel_id:req.params['hostel_id']
+            }
+        })
+        
+       const applicant_name = await applicants.findOne 
+    }catch (error){
+        console.log(error)
+    }
+}
 
 // const getStudent = async(req,res) => {
 //     console.log('hello')
@@ -134,5 +164,7 @@ module.exports = {
     getCurrentWarden,
     createWarden,
     getVacancyBYWardenMail,
-    getNewApplicants
+    getNewApplicants,
+    getAlllotRoomData,
+    getAvailableRoom
 };

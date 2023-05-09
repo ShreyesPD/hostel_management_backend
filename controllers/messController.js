@@ -73,6 +73,7 @@ const getMessFeePerMeal = async(req,res) => {
         // })
 
         console.log(messFee);
+        console.log("#################################$$$$$$$$$$$$$$$$$$$$$$")
         res.status(200).send(messFee);
     }catch (error){
         console.log(error);
@@ -83,7 +84,7 @@ const getMessFeePerMeal = async(req,res) => {
 const getMessPackageFee = async(req,res) => {
 
     try{
-        const {messFeeVegFiveDay , packagePeriod5} = await messP.findOne({
+        const data = await messP.findOne({
             attributes :['amt_per_day','package_period'] ,
             where : {
                 package_description : '5_day_veg'
@@ -96,38 +97,46 @@ const getMessPackageFee = async(req,res) => {
         //         package_description : '5_day_veg'
         //     }
         // })
+        console.log(typeof(data))
+        console.log("#################################")
+        console.log(data.amt_per_day , data.package_period)
+        const final_messFeeVegFiveDay = data.amt_per_day * data.package_period; //messFeeVegFiveDay * packagePeriod5;
 
-        const final_messFeeVegFiveDay = messFeeVegFiveDay * packagePeriod5;
-
-        const { messFeeVegSevenDay , packagePeriod7} = await messP.findOne({
+        const data1 = await messP.findOne({
             attributes :['amt_per_day' , 'package_period'] ,
             where : {
                 package_description : '7_day_veg'
             }
         })
 
-        const final_messFeeVegSevenDay = messFeeVegSevenDay * packagePeriod7;
+        const final_messFeeVegSevenDay = data1.amt_per_day * data1.package_period;
 
-        const {messFeeNonVegFiveDay , packagePeriodNV5} = await messP.findOne({
+        const data2 = await messP.findOne({
             attributes :['amt_per_day' , 'package_period'] ,
             where : {
                 package_description : '5_day_nonveg'
             }
         })
  
-        const final_messFeeNonVegFiveDay = messFeeNonVegFiveDay * packagePeriodNV5;
+        const final_messFeeNonVegFiveDay = data2.amt_per_day * data2.package_period;
 
-        const {messFeeNonVegSevenDay , packagePeriodNV7} = await messP.findOne({
+        const data3 = await messP.findOne({
             attributes :['amt_per_day', 'package_period'] ,
             where : {
                 package_description : '7_day_nonveg'
             }
         })
         
-        const final_messFeeNonVegSevenDay = messFeeNonVegSevenDay * packagePeriodNV7;
-
+        const final_messFeeNonVegSevenDay = data3.amt_per_day * data3.package_period;
+        const data4 ={
+            final_messFeeVegFiveDay,
+            final_messFeeVegSevenDay,
+            final_messFeeNonVegFiveDay,
+            final_messFeeNonVegSevenDay
+        }
+        console.log("#################################")
         console.log({final_messFeeVegFiveDay,final_messFeeVegSevenDay,final_messFeeNonVegFiveDay,final_messFeeNonVegSevenDay});
-        res.status(200).send(final_messFeeVegFiveDay,final_messFeeVegSevenDay,final_messFeeNonVegFiveDay,final_messFeeNonVegSevenDay);
+        res.status(200).send(data4);
     }catch (error){
         console.log(error);
     }
