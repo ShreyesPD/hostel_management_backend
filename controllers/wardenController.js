@@ -165,6 +165,21 @@ const getAllResidents = async (req,res)=>{
     }
 }
 
+const getApprovedApplicant = async(req,res) => {
+    console.log('hello')
+    try{
+        const allApp = await applicants.findAll({
+            where : {
+                application_status : 'approved'
+            }
+        });
+        console.log({allApp});
+        res.status(200).send(allApp);
+    }catch (error){
+        console.log(error);
+    }
+};
+
 const roomAllotments= db.roomAllotment;
 
 const allocateRoom = async (req,res)=>{
@@ -220,5 +235,6 @@ module.exports = {
     getAlllotRoomData,
     getAvailableRoom,
     getAllResidents,
-    allocateRoom
+    allocateRoom,
+    getApprovedApplicant
 };
