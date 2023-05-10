@@ -8,6 +8,7 @@ const hostelWardens  = db.hostelWarden
 const applicants = db.applicant;
 const payments = db.payment;
 const rooms = db.room;
+const residents = db.hostelResident;
 
 const getAllWarden = async(req,res) => {
     try{
@@ -81,6 +82,8 @@ const getVacancyBYWardenMail = async(req,res) => {
 
         const wardenEmail = req.params['email']
 
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",wardenEmail);
+
         const wardenId = await wardens.findOne({
             attributes : ['warden_id'],
             where : {
@@ -88,15 +91,19 @@ const getVacancyBYWardenMail = async(req,res) => {
             }
         });
 
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",wardenId);
+        console.log(wardenId.warden_id)
         const hostelId = await hostelWardens.findOne({
             attributes : ['hostel_id'],
             where : {
-                warden_id : wardenId , 
+                warden_id : wardenId.warden_id , 
                 end_date : null
             }
         })
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",hostelId.hostel_id);
 
-        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) as vacancy from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_id='${hostelId}'`)
+
+        const [resu,data] = await db.sequelize.query(`select sum(no_of_available_beds) as vacancy from rooms,hostels where rooms.hostel_id=hostels.hostel_id and hostels.hostel_id='${hostelId.hostel_id}'`)
         
         console.log({data});
         res.status(200).send(resu);
@@ -148,6 +155,50 @@ const getAvailableRoom = async(req,res) => {
     }
 }
 
+const getAllResidents = async (req,res)=>{
+    try{
+        const allRes = await residents.findAll({});
+        console.log({allRes});
+        res.status(200).send(allRes);
+    }catch (error){
+        console.log(error);
+    }
+}
+
+const roomAllotments= db.roomAllotment;
+
+const allocateRoom = async (req,res)=>{
+    try{
+        const {applicant_id , room_no}=req.body
+        const data={
+            room_no,
+            applicant_id
+        }
+
+        const appl = await roomAllotments.create(data)
+
+        const no = await residents.findOne({
+            attributes:[no_of_available_beds],
+            where :{
+                room_no:room_no
+            }
+        });
+
+        const app2 = await rooms.update({ no_of_available_beds: no.no_of_available_beds-1 }, {
+            where: {
+              room_no: room_no
+            }
+          });
+
+
+        console.log({allRes});
+        res.status(200).send(allRes);
+    }catch (error){
+        console.log(error);
+    }
+}
+
+
 // const getStudent = async(req,res) => {
 //     console.log('hello')
 //     try{
@@ -159,6 +210,7 @@ const getAvailableRoom = async(req,res) => {
 // }
 
 
+
 module.exports = {
     getAllWarden ,
     getCurrentWarden,
@@ -166,5 +218,7 @@ module.exports = {
     getVacancyBYWardenMail,
     getNewApplicants,
     getAlllotRoomData,
-    getAvailableRoom
+    getAvailableRoom,
+    getAllResidents,
+    allocateRoom
 };
