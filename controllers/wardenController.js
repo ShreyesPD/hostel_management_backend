@@ -1,6 +1,8 @@
 //importing modules
 // const bcrypt = require("bcrypt");
 const db = require("../models");
+const { Op } = require("sequelize");
+
 // const jwt = require("jsonwebtoken");
 
 const wardens = db.warden;
@@ -131,7 +133,8 @@ const getAlllotRoomData = async(req,res) => {
             attributes:['applicant_id','payment_id','payment_amt']
         })
         
-       const applicant_name = await applicants.findOne 
+        res.status(200).send(data);
+
     }catch (error){
         console.log(error)
     }
@@ -139,17 +142,34 @@ const getAlllotRoomData = async(req,res) => {
 
 const getAvailableRoom = async(req,res) => {
     try{
+
+        
         const data= await rooms.findAll({
-            attributes:['room_no'],
+            attributes:['room_no','no_of_available_beds'],
             where :{
-                no_of_available_beds : {
-                    [op.lt] : 2 
-                },
+                // no_of_available_beds: {
+                //     [Op.gt] : 0,
+                //     [Op.lt] : 3 
+                // },
                 hostel_id:req.params['hostel_id']
             }
         })
+
+        var data1=[];
+
+        data.forEach(element => {
+            const availB = parseInt(element.no_of_available_beds);
+            if(availB>0 && availB<3){
+                data1.push(element)
+            }
+            
+    });
         
-       const applicant_name = await applicants.findOne 
+    //    const applicant_name = await applicants.findOne 
+    console.log('$$$$$$$$$$$',data)
+    console.log('$$$$$$$$$$$',data1)
+    res.status(200).send(data1);
+        
     }catch (error){
         console.log(error)
     }
@@ -183,35 +203,35 @@ const getApprovedApplicant = async(req,res) => {
 const roomAllotments= db.roomAllotment;
 
 
-const allocateRoom = async (req,res)=>{
-    try{
-        const {room_no , applicant_id}=req.body
-        const data={
-            room_no,
-            applicant_id
-        }
+// const allocateRoom = async (req,res)=>{
+//     try{
+//         const {room_no , applicant_id}=req.body
+//         const data={
+//             room_no,
+//             applicant_id
+//         }
 
-        const appl = await roomAllotments.create(data)
+//         const appl = await roomAllotments.create(data)
 
-        const no = await residents.findOne({
-            attributes:[no_of_available_beds],
-            where :{
-                room_no:room_no
-            }
-        });
+//         const no = await residents.findOne({
+//             attributes:[no_of_available_beds],
+//             where :{
+//                 room_no:room_no
+//             }
+//         });
 
-        const app2 = await rooms.update({ no_of_available_beds: no.no_of_available_beds-1 }, {
-            where: {
-              room_no: room_no
-            }
-          });
+//         const app2 = await rooms.update({ no_of_available_beds: no.no_of_available_beds-1 }, {
+//             where: {
+//               room_no: room_no
+//             }
+//           });
 
 
-        res.status(200).send(app2);
-    }catch (error){
-        console.log(error);
-    }
-}
+//         res.status(200).send(app2);
+//     }catch (error){
+//         console.log(error);
+//     }
+// }
 
 const getNewApplicationCount = async(req,res)=>{
     try{

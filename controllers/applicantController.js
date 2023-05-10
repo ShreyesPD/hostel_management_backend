@@ -110,6 +110,8 @@ const showWaitingList = async(req,res) => {
 const updateApplicationStatus = async(req,res) => {
     try{
         const {applicant_id,application_status} = req.body;
+
+        console.log("$$$$$$$$$$$$$$$$$$$$$$$" , applicant_id,application_status)
         const updateStatus = await applicants.update({ application_status : application_status}, {
             where: {
                 applicant_id: applicant_id
@@ -126,7 +128,7 @@ const deleteApplicant = async(req,res) => {
 
         const deleteApp = await applicants.destroy({
             where: {
-                application_status: "rejected"
+                applicant_id:req.params['applicant_id']
             }
           });
           res.status(200).send(deleteApp);

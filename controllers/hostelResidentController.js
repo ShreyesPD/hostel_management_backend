@@ -12,24 +12,24 @@ const applicants = db.applicant;
 const guardians = db.guardian;
 const roomAllotments= db.roomAllotment;
 const rooms = db.room;
-const residents = db.hostelResident;
-
 
 const createHostelResident = async (req, res) => {
     try {
 
-        const {applicant_id,room_no} = req.body;
+        const {room_no,applicant_id} = req.body;
 
         const applicantData = await applicants.findOne({
             where : {
                 applicant_id : applicant_id
             }
         });
+
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@',typeof(applicantData),applicantData)
         
         const hostel_resident_id = applicantData.applicant_id;
         const hostel_resident_name= applicantData.applicant_name;
         const course_type  = applicantData.course_type ;
-        const hostel_resident_course = applicantData.course;
+        const hostel_resident_course = applicantData.applicant_course;
         const sex =applicantData.sex;
         const aadhar =applicantData.aadhar;
         const address =applicantData.address;
@@ -58,6 +58,9 @@ const createHostelResident = async (req, res) => {
             medical_certificate,
             bonified_certificate,
         };
+
+        console.log('*****************',data)
+
         const hosR = await hostelResidents.create(data)
         
         console.log("hostel record inserted")
@@ -91,6 +94,7 @@ const createHostelResident = async (req, res) => {
 const createGuardian = async (applicantData) => {
 
     try {
+        const hostel_resident_id = applicantData.applicant_id;
         const guardian_name= applicantData.guardian_name ;
         const relation = applicantData.relation ; 
         const aadhar =  applicantData.guardian_aadhar ; 
@@ -99,6 +103,7 @@ const createGuardian = async (applicantData) => {
         const email = applicantData.guardian_email ;
 
         const data ={
+            hostel_resident_id,
             guardian_name,
             relation,
             aadhar,
@@ -133,18 +138,28 @@ const allotResidentRoom = async(applicantData,room_no) =>{
         const roomA = await roomAllotments.create(data);
 
         //updating vaccancies
-        const no = await residents.findOne({
-            attributes:[no_of_available_beds],
+        const no = await rooms.findOne({
+            attributes : ['no_of_available_beds'],
             where :{
                 room_no:room_no
             }
         });
 
-        const app2 = await rooms.update({ no_of_available_beds: no.no_of_available_beds-1 }, {
+        console.log('@@@@@@@@@@@@@@@@@@@%%%%%%%%',no,no.no_of_available_beds)
+
+        no.no_of_available_beds=no.no_of_available_beds-1;
+        no.no_of_available_beds.toString();
+
+        console.log('@@@@@@@@@@@@@@@@@@@%%%%%%%%',no,no.no_of_available_beds)
+
+
+        const app2 = await rooms.update({ no_of_available_beds: no.no_of_available_beds}, {
             where: {
               room_no: room_no
             }
           });
+
+          console.log('@@@@@@@@@@@@@@@@@@@%%%%%%%%',app2)
 
         return app2
 

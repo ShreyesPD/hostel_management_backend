@@ -20,7 +20,7 @@ router.get('/findApplicantByNameCourse/:applicant_name/:applicant_course', findA
 router.get('/sortApplicantByDistance', sortApplicantByDistance)
 router.get('/showWaitingList', applicantController.showWaitingList)
 router.post('/updateApplicationStatus', updateApplicationStatus)
-router.delete('/deleteApplicant',deleteApplicant)
+router.delete('/deleteApplicant/:applicant_id',deleteApplicant)
 
 
 
