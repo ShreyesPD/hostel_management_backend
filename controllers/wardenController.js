@@ -112,18 +112,18 @@ const getVacancyBYWardenMail = async(req,res) => {
     }
 };
 
-const getNewApplicants = async(req,res) => {
-    try{
-        const appl = await applicants.count({
-            where: {
-                application_status : req.params['application_status'],
-            } 
-        });
-        res.status(200).send(appl);
-    }catch (error){
-        console.log(error);
-    }
-};
+// const getNewApplicants = async(req,res) => {
+//     try{
+//         const appl = await applicants.count({
+//             where: {
+//                 application_status : req.params['application_status'],
+//             } 
+//         });
+//         res.status(200).send(appl);
+//     }catch (error){
+//         console.log(error);
+//     }
+// };
 
 const getAlllotRoomData = async(req,res) => {
     try{
@@ -182,9 +182,10 @@ const getApprovedApplicant = async(req,res) => {
 
 const roomAllotments= db.roomAllotment;
 
+
 const allocateRoom = async (req,res)=>{
     try{
-        const {applicant_id , room_no}=req.body
+        const {room_no , applicant_id}=req.body
         const data={
             room_no,
             applicant_id
@@ -206,13 +207,24 @@ const allocateRoom = async (req,res)=>{
           });
 
 
-        console.log({allRes});
-        res.status(200).send(allRes);
+        res.status(200).send(app2);
     }catch (error){
         console.log(error);
     }
 }
 
+const getNewApplicationCount = async(req,res)=>{
+    try{
+        const appl = await applicants.count({
+            where: {
+                application_status : 'waiting',
+            } 
+        });
+        res.status(200).send(appl);
+    }catch (error){
+        console.log(error);
+    }    
+}
 
 // const getStudent = async(req,res) => {
 //     console.log('hello')
@@ -231,10 +243,11 @@ module.exports = {
     getCurrentWarden,
     createWarden,
     getVacancyBYWardenMail,
-    getNewApplicants,
+    // getNewApplicants,
     getAlllotRoomData,
     getAvailableRoom,
     getAllResidents,
-    allocateRoom,
-    getApprovedApplicant
+    // allocateRoom,
+    getApprovedApplicant,
+    getNewApplicationCount
 };

@@ -10,6 +10,8 @@ const hostelRoutes = require ('./routes/hostelRoutes')
 const messRoutes = require ('./routes/messRoutes')
 const wardenRoutes = require ('./routes/wardenRoutes')
 const PaymentRoutes = require('./routes/paymentRoutes')
+const hostelResidentRoutes = require('./routes/hostelResidentRoutes')
+
 // const triggerQuerry = require('./middlewares/triggers')
 const { raw } = require('mysql2');
 var cors = require('cors')
@@ -47,6 +49,7 @@ app.use('/api/hostel', hostelRoutes)
 app.use('/api/mess', messRoutes)
 app.use('/api/warden',wardenRoutes)
 app.use('/api/payment',PaymentRoutes)
+app.use('/api/hostelResident',hostelResidentRoutes)
 // app.use('/api/worksOn',worksOnRoutes)
 // app.use('/api/Leave',leaveRoutes)
 
