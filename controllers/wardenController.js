@@ -11,6 +11,7 @@ const applicants = db.applicant;
 const payments = db.payment;
 const rooms = db.room;
 const residents = db.hostelResident;
+const hostels = db.hostel;
 
 const getAllWarden = async(req,res) => {
     try{
@@ -31,11 +32,13 @@ const getCurrentWarden = async(req,res) => {
                 end_date : null
             }
         })
+        console.log({currWard1});
+
 
         const currWard = await wardens.findOne({
             
             where : {
-                warden_id : currWard1    
+                warden_id : currWard1.warden_id     
             }
         });
 
@@ -45,6 +48,31 @@ const getCurrentWarden = async(req,res) => {
         console.log(error);
     }
 };
+
+const getMyProfile = async(req,res) => {
+    try{
+        const currWard1 = await hostelWardens.findOne({
+            // attributes : ['warden_name','contact','email' ],
+            where : {
+                email : req.params['email'],
+                end_date : null
+            }
+        })
+
+        // const currWard = await wardens.findOne({
+            
+        //     where : {
+        //         warden_id : currWard1.warden_id 
+        //     }
+        // });
+
+        console.log({currWard1});
+        res.status(200).send(currWard1);
+    }catch (error){
+        console.log(error);
+    }
+};
+
 
 const createWarden = async (req, res) => {
     try {
@@ -114,6 +142,31 @@ const getVacancyBYWardenMail = async(req,res) => {
     }
 };
 
+/////////////////////////////////////
+const getWardenBYMail = async(req,res) => {
+    console.log('hello')
+    try{
+
+        const wardenEmail = req.params['email']
+
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",wardenEmail);
+
+        const wardenName = await wardens.findOne({
+            attributes : ['warden_name'],
+            where : {
+                    email : wardenEmail
+            }
+        });
+
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",wardenName);
+        res.status(200).send(wardenName);
+    }catch (error){
+        console.log(error);
+    }
+};
+
+
+
 // const getNewApplicants = async(req,res) => {
 //     try{
 //         const appl = await applicants.count({
@@ -129,16 +182,18 @@ const getVacancyBYWardenMail = async(req,res) => {
 
 const getAlllotRoomData = async(req,res) => {
     try{
-        const data= await payments.findAll({
-            attributes:['applicant_id','payment_id','payment_amt']
-        })
-        
-        res.status(200).send(data);
+        // const data= await payments.findAll({
+        //     attributes:['applicant_id','payment_id','payment_amt']
+        // })
+        const [resu,data] = await db.sequelize.query(`select payments.applicant_id, payment_id, payment_amt from payments, applicants where payments.applicant_id=applicants.applicant_id and application_status='aproved'`)
+        console.log(data)
+        res.status(200).send(resu);
 
     }catch (error){
         console.log(error)
     }
 }
+
 
 const getAvailableRoom = async(req,res) => {
     try{
@@ -177,9 +232,12 @@ const getAvailableRoom = async(req,res) => {
 
 const getAllResidents = async (req,res)=>{
     try{
-        const allRes = await residents.findAll({});
-        console.log({allRes});
-        res.status(200).send(allRes);
+       // const allRes = await residents.findAll({});
+
+       const [resu,data] = await db.sequelize.query(`select * from hostel_residents, room_allots where room_allots.hostel_resident_id=hostel_residents.hostel_resident_id and sex='M'`)
+        
+        console.log({data});
+        res.status(200).send(resu);
     }catch (error){
         console.log(error);
     }
@@ -235,12 +293,65 @@ const roomAllotments= db.roomAllotment;
 
 const getNewApplicationCount = async(req,res)=>{
     try{
+
+        const wardenEmail = req.params['email']
+
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@",wardenEmail);
+
+        const wardenId = await wardens.findOne({
+            attributes : ['warden_id'],
+            where : {
+                    email : wardenEmail
+            }
+        });
+        const hostelId = await hostelWardens.findOne({
+            attributes : ['hostel_id'],
+            where : {
+                warden_id : wardenId.warden_id , 
+                end_date : null
+            }
+        })
+
+        const hostelType = await hostels.findOne({
+            attributes : ['hostel_type'],
+            where : {
+                hostel_id : hostelId.hostel_id , 
+            }
+        })
+        console.log('^^^^^^^^^^^^',hostelType.hostel_type,'+++++++')
+
+
+        var applC;
+        if(hostelType.hostel_type=='Men_PG'){
+            applC = await applicants.count({
+                where : {
+                    sex : 'M',
+                    course_type: 'UG',
+                    application_status : 'waiting',
+                }
+            });
+        }
+        data={
+            applicationCount : applC
+        }
+
         const appl = await applicants.count({
             where: {
                 application_status : 'waiting',
+                
             } 
         });
-        res.status(200).send(appl);
+        // var sex , cType
+    //     if(hostelType.hostel_type=='Men_PG'){
+    //         console.log("inside");
+    //         sex='M';
+    //         // cType='PG'
+    //  }
+
+    //  const [resu,data] = await db.sequelize.query(`select sum(applicant_id) as applicationCount from applicants where sex='${sex}' and  application_status = 'waiting' `)
+     console.log('^^^^^^^^^^^^',data,'XXXXXXXXXXXXXXXXXXXXXXXXX')
+     res.status(200).send(data);
+        
     }catch (error){
         console.log(error);
     }    
@@ -269,5 +380,6 @@ module.exports = {
     getAllResidents,
     // allocateRoom,
     getApprovedApplicant,
-    getNewApplicationCount
+    getNewApplicationCount,
+    getMyProfile
 };

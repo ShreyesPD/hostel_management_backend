@@ -12,6 +12,7 @@ const applicants = db.applicant;
 const guardians = db.guardian;
 const roomAllotments= db.roomAllotment;
 const rooms = db.room;
+const payments = db.payment;
 
 const createHostelResident = async (req, res) => {
     try {
@@ -169,6 +170,47 @@ const allotResidentRoom = async(applicantData,room_no) =>{
     }
 }
 
+
+const getResidentInfo = async(req,res) =>{
+    try{
+        
+        const allR = await roomAllotments.findOne({
+            attributes :['room_no','start_date','end_date'],
+            where : {
+                hostel_resident_id : req.params['hostel_resident_id']
+                //application_status : 'approved'
+            }
+        });
+        console.log({allR});
+        res.status(200).send(allR);
+
+    }catch (error) {
+        console.log("room was not alloted")
+        console.log(error);
+    }
+}
+
+const getResidentPayment = async(req,res) =>{
+    try{
+        
+        const allRP = await payments.findOne({
+            attributes :['payment_amt'],
+            where : {
+                applicant_id : req.params['hostel_resident_id']
+                //application_status : 'approved'
+            }
+        });
+        console.log({allRP});
+        res.status(200).send(allRP);
+
+    }catch (error) {
+        console.log("room was not alloted")
+        console.log(error);
+    }
+}
+
+
+
 // const updateStatusAndCreateResident =  ()=> {
     
 //     updateApplicationStatus();
@@ -180,5 +222,7 @@ const allotResidentRoom = async(applicantData,room_no) =>{
 // }
 
 module.exports = {
-    createHostelResident  
+    createHostelResident  ,
+    getResidentInfo,
+    getResidentPayment
 };

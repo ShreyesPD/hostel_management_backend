@@ -9,7 +9,8 @@ const applicants = db.applicant;
 const createApplicant = async (req, res) => {
     try {
         console.log({req:req.body})
-        const { applicant_name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email , application_status} = req.body;
+        const { applicant_name , course_type , applicant_course , sex , aadhar , address , contact , distance , photo , email , medical_certificate, bonified_certificate ,start_date , end_date , guardian_name , relation , guardian_aadhar , guardian_address , guardian_contact , guardian_email } = req.body;
+        const application_status='waiting'
         const data = {
             applicant_name ,
             course_type ,
@@ -51,7 +52,9 @@ const getAllApplicant = async(req,res) => {
     try{
         const allApp = await applicants.findAll({
             where : {
-                application_status : 'waiting'
+                application_status : 'waiting',
+                course_type : 'UG',
+                sex : 'M'
             }
         });
         console.log({allApp});

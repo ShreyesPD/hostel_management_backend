@@ -1,7 +1,7 @@
 //importing modules
 const express = require('express')
 const wardenController = require('../controllers/wardenController')
-const {  getAllWarden ,   getCurrentWarden, createWarden , getVacancyBYWardenMail  ,getAlllotRoomData ,getAvailableRoom,getAllResidents,getApprovedApplicant,getNewApplicationCount} = wardenController
+const {  getAllWarden , getMyProfile,  getCurrentWarden, createWarden , getVacancyBYWardenMail  ,getAlllotRoomData ,getAvailableRoom,getAllResidents,getApprovedApplicant,getNewApplicationCount} = wardenController
 // const userAuth = require('../Middlewares/userAuth')
 
 const router = express.Router()
@@ -16,6 +16,8 @@ router.get('/getAlllotRoomData',getAlllotRoomData)
 router.get('/getAllResidents',getAllResidents)
 router.get('/getApprovedApplicant',getApprovedApplicant)
 // router.post('/allocateRoom',allocateRoom)
-router.get('/getNewApplicationCount',getNewApplicationCount)
+router.get('/getNewApplicationCount/:email',getNewApplicationCount)
+router.get('/getMyProfile/:email',getMyProfile)
+
 
 module.exports = router
